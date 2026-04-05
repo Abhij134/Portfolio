@@ -15,5 +15,8 @@
   "type": "commonjs",
   "devDependencies": {
     "vite": "^8.0.3"
+  },
+  "dependencies": {
+    "get-shit-done-cc": "^1.32.0"
   }
 }

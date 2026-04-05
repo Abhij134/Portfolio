@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio – Your Name</title>
+  <title>Portfolio – Abhijeet</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
@@ -13,336 +13,229 @@
 
 <body>
 
-  <!-- Custom Cursor -->
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
-
-  <!-- Loader -->
-  <div id="loader">
-    <div style="font-family:'Playfair Display',serif;font-size:36px;font-style:italic;letter-spacing:2px;">
-      Loading<span style="color:var(--amber)">.</span>
-    </div>
-    <div class="loader-bar-wrap">
-      <div class="loader-bar" id="loaderBar"></div>
-    </div>
-    <div class="loader-text">Crafting experience</div>
+  <div class="bg-blobs">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
   </div>
 
-  <!-- NAV -->
+  <!-- ══ CREATIVE LOADER ══ -->
+  <div id="loader">
+    <div class="loader-scene">
+      <div class="orbit o1">
+        <div class="odot od1"></div>
+      </div>
+      <div class="orbit o2">
+        <div class="odot od2"></div>
+      </div>
+      <div class="orbit o3">
+        <div class="odot od3"></div>
+      </div>
+      <div id="pContainer"></div>
+      <div class="loader-center">
+        <div class="l-initials">AB</div>
+        <div class="l-sub">Portfolio</div>
+      </div>
+    </div>
+    <div class="loader-bottom">
+      <div class="loader-pct-row">
+        <span class="l-num" id="lNum">0%</span>
+        <span class="l-lbl" id="lLbl">Initializing…</span>
+      </div>
+      <div class="l-track">
+        <div class="l-fill" id="lFill"></div>
+      </div>
+      <div class="l-steps">
+        <span class="l-step" id="ls1">Design</span>
+        <span style="color:var(--muted);opacity:.3;font-size:10px">·</span>
+        <span class="l-step" id="ls2">Code</span>
+        <span style="color:var(--muted);opacity:.3;font-size:10px">·</span>
+        <span class="l-step" id="ls3">Deploy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ NAV ══ -->
   <nav>
-    <a href="#" class="logo">Y<span>.</span>Name</a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#certifications">Certifications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Hire Me</a>
   </nav>
 
-  <!-- HERO -->
+  <!-- ══ HERO ══ -->
   <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-
     <div class="hero-left">
-      <div class="hero-tag">Open to Opportunities</div>
-      <p class="hero-greeting">Hello, I'm</p>
-      <h1 class="hero-name">Your <span class="accent">Name</span></h1>
-      <p class="hero-title">Full Stack Developer & UI/UX Designer</p>
-      <p class="hero-bio">I craft elegant digital experiences — from pixel-perfect interfaces to robust backend systems.
-        Passionate about building products that people love to use.</p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View My Work →</a>
-        <a href="#contact" class="btn-outline">Let's Talk</a>
+      <p class="hgreet" id="greeting">Hello, I'm</p>
+      <h1 class="hname"><span class="grad">Abhijeet</span></h1>
+      <p class="hrole">Full Stack Developer & UI/UX Designer</p>
+      <p class="hbio">I craft elegant digital experiences — from pixel-perfect interfaces to robust backend systems.
+        Passionate about building products people love.</p>
+      <div class="hbtns">
+        <a href="#projects" class="btn-p">View My Work →</a>
+        <a href="#contact" class="btn-o">Let's Talk</a>
       </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num" data-target="20">0</div>
-          <div class="stat-label">Projects Built</div>
-        </div>
-        <div>
-          <div class="stat-num" data-target="3">0</div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-        <div>
-          <div class="stat-num" data-target="10">0</div>
-          <div class="stat-label">Happy Clients</div>
-        </div>
-      </div>
-    </div>
 
+    </div>
     <div class="hero-right">
       <div class="photo-card">
-        <div class="float-ring"></div>
-        <div class="photo-frame">
-          <div class="photo-placeholder">
-            <div class="icon">🧑‍💻</div>
-            <span>Your Photo Here</span>
-            <span style="font-size:11px;opacity:.6">Replace with your image</span>
-          </div>
+        <div class="fring"></div>
+        <div class="photo-frame glass">
+          <div class="ico">🧑‍💻</div>
+          <span>Your Photo Here</span>
         </div>
-        <div class="photo-badge">
-          <div class="num">3+</div>
-          <div class="lbl">Years Exp.</div>
-        </div>
-        <div class="photo-chip">✦ Available for hire</div>
+        <div class="pchip">Open to Work</div>
       </div>
     </div>
-
     <div class="scroll-hint">
-      <div class="scroll-line"></div>
-      Scroll
+      <div class="sline"></div>Scroll
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-inner">
-      <span class="marquee-text">Full Stack Development</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">UI/UX Design</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">Mobile Apps</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">Cloud & DevOps</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">Open Source</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">Full Stack Development</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">UI/UX Design</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">Mobile Apps</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">Cloud & DevOps</span>
-      <span class="marquee-text">✦</span>
-      <span class="marquee-text">Open Source</span>
-      <span class="marquee-text">✦</span>
-    </div>
-  </div>
+
 
   <!-- SERVICES -->
   <section id="services">
-    <div class="section-head reveal">
-      <span class="section-tag">What I do</span>
-      <h2 class="section-title">Services I <em>Offer</em></h2>
-      <p class="section-sub">From concept to deployment — I bring ideas to life with code and design.</p>
+    <div class="shead reveal">
+      <span class="stag">What I Do</span>
+      <h2 class="stitle">Services I <em>Offer</em></h2>
+      <p class="ssub">From concept to deployment — I bring ideas to life with code and design.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-count">01</div>
-        <div class="service-icon" style="background:rgba(46,216,182,.12);color:var(--teal)">🌐</div>
+    <div class="sgrid">
+      <div class="scard glass reveal">
+        <div class="snum">01</div>
+        <div class="sicon" style="background:rgba(99,102,241,.12)">🌐</div>
         <h3>Web Development</h3>
-        <p>Responsive, fast, and modern web applications using React, Next.js, Node.js, and more.</p>
+        <p>Responsive, blazing-fast web apps using React, Next.js, Node.js and more.</p>
       </div>
-      <div class="service-card reveal">
-        <div class="service-count">02</div>
-        <div class="service-icon" style="background:rgba(245,166,35,.12);color:var(--amber)">📱</div>
+      <div class="scard glass reveal">
+        <div class="snum">02</div>
+        <div class="sicon" style="background:rgba(245,158,11,.12)">📱</div>
         <h3>Mobile Apps</h3>
-        <p>Cross-platform mobile experiences with React Native and Flutter that feel truly native.</p>
+        <p>Cross-platform apps with React Native and Flutter that feel truly native.</p>
       </div>
-      <div class="service-card reveal">
-        <div class="service-count">03</div>
-        <div class="service-icon" style="background:rgba(180,100,255,.12);color:#b464ff">🎨</div>
+      <div class="scard glass reveal">
+        <div class="snum">03</div>
+        <div class="sicon" style="background:rgba(236,72,153,.12)">🎨</div>
         <h3>UI/UX Design</h3>
-        <p>Intuitive interfaces and delightful user experiences designed in Figma with precision.</p>
+        <p>Intuitive interfaces and delightful user experiences crafted in Figma.</p>
       </div>
-      <div class="service-card reveal">
-        <div class="service-count">04</div>
-        <div class="service-icon" style="background:rgba(255,100,130,.12);color:#ff6482">☁️</div>
+      <div class="scard glass reveal">
+        <div class="snum">04</div>
+        <div class="sicon" style="background:rgba(14,165,233,.12)">☁️</div>
         <h3>Cloud & Backend</h3>
-        <p>Scalable APIs, databases, and cloud infrastructure on AWS, GCP, and Vercel.</p>
+        <p>Scalable APIs and cloud infrastructure on AWS, GCP, and Vercel.</p>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
   <section id="projects">
-    <div class="projects-header">
-      <div class="reveal">
-        <span class="section-tag">Portfolio</span>
-        <h2 class="section-title">Featured <em>Projects</em></h2>
+    <div class="ph">
+      <div class="reveal"><span class="stag">Portfolio</span>
+        <h2 class="stitle">Featured <em>Projects</em></h2>
       </div>
-      <a href="#" class="btn-outline reveal" style="font-size:13px;padding:12px 28px">View All →</a>
     </div>
-
-    <div class="projects-grid">
-      <!-- Project 1 -->
-      <div class="proj-card wide reveal">
-        <div class="proj-img">
-          <div class="emoji">🛒</div>
-          <div class="proj-img-overlay">
-            <div class="proj-link-icon">↗</div>
+    <div class="pgrid">
+      <!-- FinanceNeo Flagship Card -->
+      <div class="pcard glass full reveal" style="margin-bottom: 20px;">
+        <div class="pimg"
+          style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,244,255,0.5)); border-top: 1px solid rgba(255,255,255,0.8);">
+          <div class="em" style="display:flex; align-items:center; justify-content:center;">
+            <svg width="110" height="110" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+              style="background: #020617; border-radius: 24px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 0 15px rgba(16,185,129,0.15);">
+              <!-- Outer circle -->
+              <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+              <!-- Inner circle -->
+              <circle cx="50" cy="50" r="23" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+              <!-- Arc -->
+              <path d="M 67.5 19.7 A 35 35 0 0 1 80.3 67.5" fill="none" stroke="#10B981" stroke-width="2.5"
+                stroke-linecap="round" />
+              <!-- Green dot -->
+              <circle cx="80.3" cy="67.5" r="3" fill="#34D399" />
+              <!-- Red dot -->
+              <circle cx="19.7" cy="67.5" r="2" fill="#EF4444" opacity="0.9" />
+              <!-- F -->
+              <path d="M35 40 h11 v2.5 h-8 v5 h7 v2.5 h-7 v10 h-3 Z" fill="#ffffff" />
+              <!-- N -->
+              <path d="M52 40 h3.5 l6 11 v-11 h3 v20 h-3 l-6.5-12 v12 h-3 Z" fill="#34D399" />
+            </svg>
           </div>
         </div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">React</span>
-            <span class="proj-tag">Node.js</span>
-            <span class="proj-tag">MongoDB</span>
-          </div>
-          <h3>E-Commerce Platform</h3>
-          <p>A full-stack e-commerce solution with cart management, Stripe payments, and an admin dashboard.</p>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="proj-card narrow reveal">
-        <div class="proj-img">
-          <div class="emoji">📊</div>
-          <div class="proj-img-overlay">
-            <div class="proj-link-icon">↗</div>
-          </div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">Next.js</span>
-            <span class="proj-tag">Chart.js</span>
-          </div>
-          <h3>Analytics Dashboard</h3>
-          <p>Real-time data visualization dashboard with customizable widgets.</p>
+        <div class="pbody">
+          <h3 style="font-family:'Playfair Display',serif; font-size: 28px; margin-bottom: 12px; color: #10B981;">
+            FinanceNeo</h3>
+          <p style="margin-bottom: 24px;">Autonomous Financial Tracking Powered by AI. Features a 100-page deterministic
+            PDF scanner and real-time LLM-driven insights engine.</p>
+          <button onclick="document.getElementById('projectModal').classList.add('active')" class="btn-o"
+            style="align-self: flex-start; font-size: 13px; padding: 10px 24px;">Read More →</button>
         </div>
       </div>
 
-      <!-- Project 3 - Full width -->
-      <div class="proj-card full reveal">
-        <div class="proj-img" style="aspect-ratio:unset;">
-          <div class="emoji" style="font-size:80px">🤖</div>
-          <div class="proj-img-overlay">
-            <div class="proj-link-icon">↗</div>
-          </div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">FastAPI</span>
-            <span class="proj-tag">LangChain</span>
-            <span class="proj-tag">OpenAI</span>
-          </div>
-          <h3>AI Chat Application</h3>
-          <p>An intelligent chatbot powered by OpenAI's GPT-4 with RAG capabilities, conversation memory, and document
-            understanding. Supports multi-turn dialogue and custom knowledge bases.</p>
-          <div style="margin-top:20px;display:flex;gap:12px;">
-            <a href="#" class="btn-primary" style="font-size:13px;padding:10px 24px">View Demo →</a>
-            <a href="#" class="btn-outline" style="font-size:13px;padding:10px 24px">GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="proj-card narrow reveal">
-        <div class="proj-img">
-          <div class="emoji">💬</div>
-          <div class="proj-img-overlay">
-            <div class="proj-link-icon">↗</div>
-          </div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="proj-tag">Socket.io</span><span class="proj-tag">Redis</span></div>
-          <h3>Real-time Chat App</h3>
-          <p>WebSocket-powered messaging with rooms and file sharing.</p>
-        </div>
-      </div>
-
-      <!-- Project 5 -->
-      <div class="proj-card wide reveal">
-        <div class="proj-img">
-          <div class="emoji">🏋️</div>
-          <div class="proj-img-overlay">
-            <div class="proj-link-icon">↗</div>
-          </div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">React Native</span>
-            <span class="proj-tag">Firebase</span>
-            <span class="proj-tag">Expo</span>
-          </div>
-          <h3>Fitness Tracker App</h3>
-          <p>A cross-platform mobile app to log workouts, track progress, and set fitness goals with beautiful charts.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- SKILLS -->
   <section id="skills">
-    <div class="section-head reveal">
-      <span class="section-tag">Expertise</span>
-      <h2 class="section-title">My <em>Skills</em></h2>
-      <p class="section-sub">A curated set of technologies I use to craft modern digital solutions.</p>
+    <div class="shead reveal"><span class="stag">Expertise</span>
+      <h2 class="stitle">My <em>Skills</em></h2>
+      <p class="ssub">Technologies I use to craft modern digital solutions.</p>
     </div>
-    <div class="skills-layout">
-      <div class="skill-bars reveal">
-        <div class="skill-item">
-          <div class="skill-top"><span class="skill-name">React / Next.js</span><span class="skill-pct">92%</span></div>
-          <div class="skill-track">
-            <div class="skill-fill" data-width="92"></div>
+    <div class="sklayout">
+      <div class="skbars reveal">
+        <div style="margin-bottom: 20px;">
+          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
+              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ React / Next.js</span></div>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
+              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ Backend (Supabase / Prisma)</span>
           </div>
         </div>
-        <div class="skill-item">
-          <div class="skill-top"><span class="skill-name">Node.js / Express</span><span class="skill-pct">88%</span>
-          </div>
-          <div class="skill-track">
-            <div class="skill-fill" data-width="88"></div>
-          </div>
+        <div style="margin-bottom: 20px;">
+          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
+              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ Python / FastAPI</span></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-top"><span class="skill-name">Python / FastAPI</span><span class="skill-pct">80%</span>
-          </div>
-          <div class="skill-track">
-            <div class="skill-fill" data-width="80"></div>
-          </div>
+        <div style="margin-bottom: 20px;">
+          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
+              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ UI/UX Design (Figma)</span></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-top"><span class="skill-name">UI/UX Design (Figma)</span><span class="skill-pct">85%</span>
-          </div>
-          <div class="skill-track">
-            <div class="skill-fill" data-width="85"></div>
-          </div>
+        <div style="margin-bottom: 20px;">
+          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
+              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ AWS / Cloud</span></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-top"><span class="skill-name">AWS / Cloud</span><span class="skill-pct">72%</span></div>
-          <div class="skill-track">
-            <div class="skill-fill" data-width="72"></div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-top"><span class="skill-name">React Native / Flutter</span><span
-              class="skill-pct">76%</span></div>
-          <div class="skill-track">
-            <div class="skill-fill" data-width="76"></div>
-          </div>
+        <div style="margin-bottom: 20px;">
+          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
+              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ React Native / Flutter</span></div>
         </div>
       </div>
       <div class="reveal">
         <p
-          style="font-family:'Syne',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">
-          Technologies & Tools</p>
-        <div class="tech-cloud">
-          <span class="tech-pill">JavaScript</span>
-          <span class="tech-pill">TypeScript</span>
-          <span class="tech-pill">React</span>
-          <span class="tech-pill">Next.js</span>
-          <span class="tech-pill">Node.js</span>
-          <span class="tech-pill">Python</span>
-          <span class="tech-pill">PostgreSQL</span>
-          <span class="tech-pill">MongoDB</span>
-          <span class="tech-pill">Redis</span>
-          <span class="tech-pill">Docker</span>
-          <span class="tech-pill">Kubernetes</span>
-          <span class="tech-pill">AWS</span>
-          <span class="tech-pill">Vercel</span>
-          <span class="tech-pill">Figma</span>
-          <span class="tech-pill">Git</span>
-          <span class="tech-pill">GraphQL</span>
-          <span class="tech-pill">Tailwind</span>
-          <span class="tech-pill">Firebase</span>
-          <span class="tech-pill">Prisma</span>
-          <span class="tech-pill">LangChain</span>
+          style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:28px;font-weight:600;">
+          Technologies & AI Tools</p>
+        <div class="tcloud">
+          <span class="tpill glass">JavaScript</span><span class="tpill glass">TypeScript</span><span
+            class="tpill glass">React</span>
+          <span class="tpill glass">Next.js</span><span class="tpill glass">Supabase</span><span
+            class="tpill glass">Prisma</span>
+          <span class="tpill glass">PostgreSQL</span><span class="tpill glass">Node.js</span><span
+            class="tpill glass">Tailwind CSS</span>
+          <span class="tpill glass">Python</span><span class="tpill glass">Pandas</span><span
+            class="tpill glass">NumPy</span>
+          <span class="tpill glass">SQL</span><span class="tpill glass">Tableau</span><span
+            class="tpill glass">PowerBI</span>
+          <span class="tpill glass">OpenAI</span><span class="tpill glass">LangChain</span><span
+            class="tpill glass">Hugging Face</span>
+          <span class="tpill glass">Gemini 2.5</span><span class="tpill glass">Pinecone Vector DB</span><span
+            class="tpill glass">RAG</span>
+          <span class="tpill glass">Docker</span><span class="tpill glass">Kubernetes</span><span
+            class="tpill glass">AWS</span>
+          <span class="tpill glass">Vercel</span><span class="tpill glass">Figma</span><span
+            class="tpill glass">GraphQL</span>
         </div>
       </div>
     </div>
@@ -350,223 +243,371 @@
 
   <!-- EXPERIENCE -->
   <section id="experience">
-    <div class="section-head reveal">
-      <span class="section-tag">History</span>
-      <h2 class="section-title">Work <em>Experience</em></h2>
+    <div class="shead reveal"><span class="stag">Journey</span>
+      <h2 class="stitle">Work <em>Experience</em></h2>
     </div>
-    <div class="exp-grid">
-      <div class="exp-card reveal">
-        <div class="exp-dot"></div>
-        <div class="exp-date">Jan 2024 – Present</div>
-        <div class="exp-role">Full Stack Developer</div>
-        <div class="exp-company">Company Name, City</div>
-        <div class="exp-desc">Built and maintained scalable web applications using React and Node.js. Reduced page load
-          time by 40% and improved system reliability to 99.9% uptime.</div>
+    <div class="egrid" style="grid-template-columns: 1fr;">
+      <div class="ecard glass reveal">
+        <div class="edot" style="background:linear-gradient(135deg,var(--pink),var(--violet))"></div>
+        <div class="erole">UI/UX Designer</div>
+        <div class="eco">Freelance</div>
+        <div class="edesc">Designed interfaces for startups. Created design systems, prototypes, and user flows in
+          Figma.</div>
       </div>
-      <div class="exp-card reveal">
-        <div class="exp-dot" style="background:var(--amber)"></div>
-        <div class="exp-date">Jun 2022 – Dec 2023</div>
-        <div class="exp-role">Frontend Developer</div>
-        <div class="exp-company">Agency / Studio Name</div>
-        <div class="exp-desc">Delivered pixel-perfect UIs for 10+ client projects. Worked closely with designers to
-          create accessible, animated web experiences.</div>
-      </div>
-      <div class="exp-card reveal">
-        <div class="exp-dot" style="background:#b464ff"></div>
-        <div class="exp-date">Mar 2021 – May 2022</div>
-        <div class="exp-role">UI/UX Designer</div>
-        <div class="exp-company">Freelance</div>
-        <div class="exp-desc">Designed interfaces for startups and small businesses. Created design systems, prototypes,
-          and user flows in Figma.</div>
-      </div>
-      <div class="exp-card reveal">
-        <div class="exp-dot" style="background:var(--muted)"></div>
-        <div class="exp-date">2019 – 2021</div>
-        <div class="exp-role">B.Tech Computer Science</div>
-        <div class="exp-company">University / College Name</div>
-        <div class="exp-desc">Graduated with honors. Active member of the coding club. Built multiple hackathon-winning
-          projects in web and AI.</div>
+      <div class="ecard glass reveal">
+        <div class="edot" style="background:rgba(99,102,241,.3)"></div>
+        <div class="edate">4th Year (Current)</div>
+        <div class="erole">BCA (Hons) Specialization in Data Analytics</div>
+        <div class="edesc">Conducting research in Data Analytics alongside core studies. Active in software engineering
+          and data analysis.
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CERTIFICATIONS -->
   <section id="certifications">
-    <div class="section-head reveal">
-      <span class="section-tag">Credentials</span>
-      <h2 class="section-title">My <em>Certifications</em></h2>
-      <p class="section-sub">Verified credentials from industry-leading platforms and organizations.</p>
+    <div class="shead reveal"><span class="stag">Credentials</span>
+      <h2 class="stitle">My <em>Certifications</em></h2>
+      <p class="ssub">Verified credentials from industry-leading platforms.</p>
     </div>
-    <div class="certs-grid">
-      <div class="cert-card reveal">
-        <div class="cert-icon" style="background:rgba(245,166,35,.12)">☁️</div>
-        <div class="cert-body">
-          <div class="cert-title">AWS Solutions Architect – Associate</div>
-          <div class="cert-issuer">Amazon Web Services</div>
-          <div class="cert-date">Issued: March 2024 • Credential ID: ****</div>
+    <div class="cgrid">
+      <div class="ccard glass reveal" onclick="document.getElementById('certModal').classList.add('active')"
+        style="cursor: pointer;">
+        <div class="cico" style="background:rgba(99,102,241,.12)">📊</div>
+        <div>
+          <div class="ctitle">GenAI Powered Data Analytics</div>
+          <div class="ciss">TATA / Forage</div>
+          <div class="cdate">April 2026</div>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon" style="background:rgba(46,216,182,.12)">⚛️</div>
-        <div class="cert-body">
-          <div class="cert-title">Meta Frontend Developer Professional</div>
-          <div class="cert-issuer">Meta / Coursera</div>
-          <div class="cert-date">Issued: November 2023</div>
+      <div class="ccard glass reveal" onclick="document.getElementById('deloitteModal').classList.add('active')"
+        style="cursor: pointer;">
+        <div class="cico" style="background:rgba(20,184,166,.12)">📈</div>
+        <div>
+          <div class="ctitle">Data Analytics Job Simulation</div>
+          <div class="ciss">Deloitte / Forage</div>
+          <div class="cdate">March 2026</div>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon" style="background:rgba(180,100,255,.12)">🤖</div>
-        <div class="cert-body">
-          <div class="cert-title">Deep Learning Specialization</div>
-          <div class="cert-issuer">DeepLearning.AI / Coursera</div>
-          <div class="cert-date">Issued: August 2023</div>
+      <div class="ccard glass reveal" onclick="document.getElementById('tataVisModal').classList.add('active')"
+        style="cursor: pointer;">
+        <div class="cico" style="background:rgba(236,72,153,.12)">📊</div>
+        <div>
+          <div class="ctitle">Data Visualisation</div>
+          <div class="ciss">TATA / Forage</div>
+          <div class="cdate">March 2026</div>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon" style="background:rgba(255,100,130,.12)">🐳</div>
-        <div class="cert-body">
-          <div class="cert-title">Docker & Kubernetes Certified</div>
-          <div class="cert-issuer">Linux Foundation</div>
-          <div class="cert-date">Issued: June 2023</div>
+      <div class="ccard glass reveal" onclick="document.getElementById('ciscoModal').classList.add('active')"
+        style="cursor: pointer;">
+        <div class="cico" style="background:rgba(14,165,233,.12)">🌐</div>
+        <div>
+          <div class="ctitle">CCNA: Introduction to Networks</div>
+          <div class="ciss">Cisco Networking Academy</div>
+          <div class="cdate">June 2025</div>
         </div>
       </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon" style="background:rgba(100,180,255,.12)">🔐</div>
-        <div class="cert-body">
-          <div class="cert-title">Google UX Design Certificate</div>
-          <div class="cert-issuer">Google / Coursera</div>
-          <div class="cert-date">Issued: February 2023</div>
+      <div class="ccard glass reveal" onclick="document.getElementById('nptelModal').classList.add('active')"
+        style="cursor: pointer;">
+        <div class="cico" style="background:rgba(217,119,6,.12)">💡</div>
+        <div>
+          <div class="ctitle">Entrepreneurship (Elite)</div>
+          <div class="ciss">NPTEL / IIT Madras</div>
+          <div class="cdate">Oct 2025</div>
         </div>
-      </div>
-      <div class="cert-card cert-add reveal">
-        <div class="plus">+</div>
-        <div>Add Your Certification</div>
-        <div style="font-size:12px;color:var(--muted);font-weight:400;font-family:'DM Sans',sans-serif">Replace with
-          your credentials</div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="section-head reveal">
-      <span class="section-tag">Feedback</span>
-      <h2 class="section-title">People <em>Say</em></h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="testi-text">"Exceptional work! The application was delivered ahead of schedule, and the code quality
-          was outstanding. I'd work with them again without hesitation."</div>
-        <div class="testi-author">
-          <div class="testi-avatar">AK</div>
-          <div>
-            <div class="testi-name">Arjun Kumar</div>
-            <div class="testi-role">CEO, Tech Startup</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="testi-text">"Transformed our outdated platform into a modern, blazing-fast app. Communication was
-          smooth throughout. The attention to UX details was remarkable."</div>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:linear-gradient(135deg,#b464ff,var(--amber))">SM</div>
-          <div>
-            <div class="testi-name">Shreya Mehta</div>
-            <div class="testi-role">Product Manager</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="testi-text">"The AI-powered features they built were incredibly well-designed. Brought complex
-          machine learning concepts to life in a user-friendly interface."</div>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:linear-gradient(135deg,var(--teal-dim),#4466ff)">RV</div>
-          <div>
-            <div class="testi-name">Rahul Verma</div>
-            <div class="testi-role">Founder, AI Platform</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Testimonials removed as per request -->
 
   <!-- CONTACT -->
   <section id="contact">
-    <div class="contact-left reveal">
-      <span class="section-tag">Get in Touch</span>
-      <div class="contact-cta">Let's Build Something <em>Amazing</em></div>
-      <p class="contact-text">Have a project in mind? I'm always open to discussing new opportunities, interesting
-        ideas, or how we can work together.</p>
-      <div class="contact-links">
-        <a href="mailto:your@email.com" class="contact-link">
-          <span class="icon">📧</span>
-          <div class="info">
-            <div class="label">Email</div>
-            <div class="val">your@email.com</div>
+    <div class="reveal">
+      <span class="stag">Get in Touch</span>
+      <div class="ccta">Let's Build Something <em>Amazing</em></div>
+      <p class="ctxt">Have a project in mind? I'm open to discussing new opportunities and interesting ideas.</p>
+      <div class="clinks">
+        <a href="mailto:your@email.com" class="clink glass"><span class="clico">📧</span>
+          <div>
+            <div class="cllbl">Email</div>
+            <div class="clval">your@email.com</div>
           </div>
         </a>
-        <a href="https://linkedin.com/in/yourprofile" class="contact-link">
-          <span class="icon">💼</span>
-          <div class="info">
-            <div class="label">LinkedIn</div>
-            <div class="val">linkedin.com/in/yourprofile</div>
+        <a href="https://linkedin.com/in/yourprofile" class="clink glass"><span class="clico">💼</span>
+          <div>
+            <div class="cllbl">LinkedIn</div>
+            <div class="clval">linkedin.com/in/yourprofile</div>
           </div>
         </a>
-        <a href="https://github.com/yourusername" class="contact-link">
-          <span class="icon">🐙</span>
-          <div class="info">
-            <div class="label">GitHub</div>
-            <div class="val">github.com/yourusername</div>
+        <a href="https://github.com/yourusername" class="clink glass"><span class="clico">🐙</span>
+          <div>
+            <div class="cllbl">GitHub</div>
+            <div class="clval">github.com/yourusername</div>
           </div>
-        </a>
-      </div>
+      </div></a>
     </div>
-    <div class="contact-right reveal">
-      <div class="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" placeholder="John">
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" placeholder="Doe">
-          </div>
+    </div>
+    <div class="reveal">
+      <div class="cform">
+        <div class="frow">
+          <div class="fgrp"><label>First Name</label><input type="text" placeholder="John"></div>
+          <div class="fgrp"><label>Last Name</label><input type="text" placeholder="Doe"></div>
         </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="john@example.com">
-        </div>
-        <div class="form-group">
-          <label>Subject</label>
-          <input type="text" placeholder="Project Inquiry">
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button class="btn-submit"
-          onclick="this.textContent='Message Sent ✓';this.style.background='var(--teal)';setTimeout(()=>{this.textContent='Send Message →';this.style.background=''},3000)">
-          Send Message →
-        </button>
+        <div class="fgrp"><label>Email</label><input type="email" placeholder="john@example.com"></div>
+        <div class="fgrp"><label>Subject</label><input type="text" placeholder="Project Inquiry"></div>
+        <div class="fgrp"><label>Message</label><textarea placeholder="Tell me about your project…"></textarea></div>
+        <button class="bsub"
+          onclick="this.textContent='Sent ✓';this.style.background='linear-gradient(135deg,#0ea5e9,#6366f1)';setTimeout(()=>{this.textContent='Send Message →';this.style.background=''},3000)">Send
+          Message →</button>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Y<span>.</span>Name</div>
-    <div class="footer-copy">© 2024 Your Name · All rights reserved</div>
-    <div class="footer-socials">
-      <a href="#" class="social-btn">𝕏</a>
-      <a href="#" class="social-btn">in</a>
-      <a href="#" class="social-btn">gh</a>
-      <a href="#" class="social-btn">ig</a>
+    <div class="fcopy">© 2024 · Personal Portfolio · Crafted with ♥</div>
+    <div class="fsoc">
+      <a href="#" class="fsb glass">𝕏</a>
+      <a href="#" class="fsb glass">in</a>
+      <a href="#" class="fsb glass">gh</a>
+      <a href="#" class="fsb glass">ig</a>
     </div>
   </footer>
+
+  <style>
+    #btt {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 36px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30px;
+      color: var(--primary);
+      font-size: 16px;
+      text-decoration: none;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    #btt .btt-txt {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-left: 0;
+      max-width: 0;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #btt:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      transform: translateX(-50%) translateY(-3px);
+    }
+
+    #btt:hover .btt-txt {
+      max-width: 120px;
+      margin-left: 10px;
+      opacity: 1;
+    }
+  </style>
+  <a href="#" id="btt" class="glass">
+    ↑<span class="btt-txt">Scroll Up</span>
+  </a>
+  <script>
+    window.addEventListener('scroll', () => {
+      const btt = document.getElementById('btt');
+      if (window.scrollY > 300) { btt.style.opacity = '1'; btt.style.pointerEvents = 'auto'; }
+      else { btt.style.opacity = '0'; btt.style.pointerEvents = 'none'; }
+    });
+  </script>
+  <!-- CERT MODAL -->
+  <div class="modal-overlay" id="certModal" onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="modal-box">
+      <button class="modal-close"
+        onclick="document.getElementById('certModal').classList.remove('active')">&times;</button>
+      <h3
+        style="font-family:'Playfair Display',serif; font-size: 28px; font-weight:900; margin-bottom: 8px; color:var(--indigo);">
+        GenAI Powered Data Analytics</h3>
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Issued by TATA / Forage &nbsp;•&nbsp; April
+        4th, 2026</p>
+
+      <div
+        style="font-size: 11px; font-family:'Syne', sans-serif;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--indigo);margin-bottom:12px;">
+        Practical Tasks Completed
+      </div>
+      <ul style="color: var(--text); font-size: 15px; line-height: 1.8; margin-bottom: 24px; padding-left: 20px;">
+        <li>Exploratory data analysis and risk profiling</li>
+        <li>Predicting delinquency with AI</li>
+        <li>Business report and data storytelling for collections strategy</li>
+        <li>Implementing an AI-driven collections strategy</li>
+      </ul>
+      <a href="/GenAI_Certificate.pdf" target="_blank"
+        style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, var(--indigo), var(--violet)); color: white; text-decoration: none; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; box-shadow: 0 4px 20px rgba(99, 102, 241, .35); transition: all 0.3s; margin-top: 8px;">
+        View Certificate →
+      </a>
+    </div>
+  </div>
+
+  <!-- DELOITTE MODAL -->
+  <div class="modal-overlay" id="deloitteModal" onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="modal-box">
+      <button class="modal-close"
+        onclick="document.getElementById('deloitteModal').classList.remove('active')">&times;</button>
+      <h3
+        style="font-family:'Playfair Display',serif; font-size: 28px; font-weight:900; margin-bottom: 8px; color:var(--teal);">
+        Data Analytics Job Simulation</h3>
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Issued by Deloitte / Forage &nbsp;•&nbsp;
+        March 25th, 2026</p>
+
+      <div
+        style="font-size: 11px; font-family:'Syne', sans-serif;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">
+        Practical Tasks Completed
+      </div>
+      <ul style="color: var(--text); font-size: 15px; line-height: 1.8; margin-bottom: 24px; padding-left: 20px;">
+        <li>Data analysis</li>
+        <li>Forensic technology</li>
+      </ul>
+      <a href="/Deloitte_Certificate.pdf" target="_blank"
+        style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, var(--teal), var(--indigo)); color: white; text-decoration: none; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; box-shadow: 0 4px 20px rgba(20, 184, 166, .35); transition: all 0.3s; margin-top: 8px;">
+        View Certificate →
+      </a>
+    </div>
+  </div>
+
+  <!-- TATA VIS MODAL -->
+  <div class="modal-overlay" id="tataVisModal" onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="modal-box">
+      <button class="modal-close"
+        onclick="document.getElementById('tataVisModal').classList.remove('active')">&times;</button>
+      <h3
+        style="font-family:'Playfair Display',serif; font-size: 28px; font-weight:900; margin-bottom: 8px; color:var(--pink);">
+        Data Visualisation</h3>
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Issued by TATA / Forage &nbsp;•&nbsp; March
+        28th, 2026</p>
+
+      <div
+        style="font-size: 11px; font-family:'Syne', sans-serif;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:12px;">
+        Practical Tasks Completed
+      </div>
+      <ul style="color: var(--text); font-size: 15px; line-height: 1.8; margin-bottom: 24px; padding-left: 20px;">
+        <li>Framing the Business Scenario</li>
+        <li>Choosing the Right Visuals</li>
+        <li>Creating Effective Visuals</li>
+        <li>Communicating Insights and Analysis</li>
+      </ul>
+      <a href="/TATAVisa_Certificate.pdf" target="_blank"
+        style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, var(--pink), var(--violet)); color: white; text-decoration: none; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; box-shadow: 0 4px 20px rgba(236, 72, 153, .35); transition: all 0.3s; margin-top: 8px;">
+        View Certificate →
+      </a>
+    </div>
+  </div>
+
+  <!-- CISCO MODAL -->
+  <div class="modal-overlay" id="ciscoModal" onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="modal-box">
+      <button class="modal-close"
+        onclick="document.getElementById('ciscoModal').classList.remove('active')">&times;</button>
+      <h3
+        style="font-family:'Playfair Display',serif; font-size: 28px; font-weight:900; margin-bottom: 8px; color:var(--teal);">
+        CCNA: Introduction to Networks</h3>
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Issued by Cisco Networking Academy
+        &nbsp;•&nbsp; June 6th, 2025</p>
+
+      <div
+        style="font-size: 11px; font-family:'Syne', sans-serif;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">
+        Skills Achieved
+      </div>
+      <ul style="color: var(--text); font-size: 14px; line-height: 1.6; margin-bottom: 24px; padding-left: 20px;">
+        <li>Configure switches and end devices to access network resources.</li>
+        <li>Understand physical and data link layer protocols (Ethernet).</li>
+        <li>Configure routers for end-to-end connectivity.</li>
+        <li>Create and verify IPv4 and IPv6 addressing schemes.</li>
+        <li>Explain upper layers of the OSI model for applications.</li>
+        <li>Configure small network security best practices.</li>
+        <li>Troubleshoot connectivity in small networks.</li>
+      </ul>
+      <a href="/Cisco_Certificate.pdf" target="_blank"
+        style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, var(--teal), var(--indigo)); color: white; text-decoration: none; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; box-shadow: 0 4px 20px rgba(20, 184, 166, .35); transition: all 0.3s; margin-top: 8px;">
+        View Certificate →
+      </a>
+    </div>
+  </div>
+
+  <!-- NPTEL MODAL -->
+  <div class="modal-overlay" id="nptelModal" onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="modal-box">
+      <button class="modal-close"
+        onclick="document.getElementById('nptelModal').classList.remove('active')">&times;</button>
+      <h3
+        style="font-family:'Playfair Display',serif; font-size: 28px; font-weight:900; margin-bottom: 8px; color:var(--amber);">
+        Entrepreneurship</h3>
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Issued by NPTEL / IIT Madras &nbsp;•&nbsp;
+        Jul-Oct 2025</p>
+
+      <div
+        style="font-size: 11px; font-family:'Syne', sans-serif;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px;">
+        Assessment Details
+      </div>
+      <ul style="color: var(--text); font-size: 15px; line-height: 1.8; margin-bottom: 24px; padding-left: 20px;">
+        <li>Consolidated Score: <strong>60% (Elite)</strong></li>
+        <li>Online Assignments: 23.75/25</li>
+        <li>Proctored Exam: 36/75</li>
+        <li>12-week course (IIT Madras)</li>
+        <li>Funded by MoE, Govt. of India</li>
+      </ul>
+      <a href="/NPTEL_Certificate.pdf" target="_blank"
+        style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, var(--amber), var(--violet)); color: white; text-decoration: none; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; box-shadow: 0 4px 20px rgba(217, 119, 6, .35); transition: all 0.3s; margin-top: 8px;">
+        View Certificate →
+      </a>
+    </div>
+  </div>
+
+  <!-- PROJECT MODAL -->
+  <div class="modal-overlay" id="projectModal" onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="modal-box">
+      <button class="modal-close"
+        onclick="document.getElementById('projectModal').classList.remove('active')">&times;</button>
+      <h3
+        style="font-family:'Playfair Display',serif; font-size: 32px; font-weight:900; margin-bottom: 12px; color:#10B981;">
+        FinanceNeo</h3>
+      <p style="color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 24px;">
+        <span style="color: #10B981; font-weight: 700;">FinanceNeo</span> is an Autonomous Financial Tracking platform
+        powered by advanced AI.
+        It features a highly robust 100-page deterministic PDF scanner, enabling effortless processing of dense
+        financial statements.
+        Coupled with a real-time LLM-driven insights engine (Gemini 2.5), it delivers instantaneous financial clarity,
+        categorization, and predictive analysis.
+      </p>
+
+      <div
+        style="font-size: 11px; font-family:'Syne', sans-serif;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--indigo);margin-bottom:12px;">
+        Tech Stack</div>
+      <div class="tcloud" style="margin-bottom:32px;">
+        <span class="tpill glass"
+          style="border:1px solid rgba(16,185,129,0.2); color:#10B981; background:rgba(16,185,129,0.05);">Next.js</span>
+        <span class="tpill glass"
+          style="border:1px solid rgba(16,185,129,0.2); color:#10B981; background:rgba(16,185,129,0.05);">Tailwind
+          CSS</span>
+        <span class="tpill glass"
+          style="border:1px solid rgba(16,185,129,0.2); color:#10B981; background:rgba(16,185,129,0.05);">Prisma</span>
+        <span class="tpill glass"
+          style="border:1px solid rgba(16,185,129,0.2); color:#10B981; background:rgba(16,185,129,0.05);">Gemini
+          2.5</span>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="./main.js"></script>
 </body>
