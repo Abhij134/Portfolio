@@ -8,6 +8,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./logo.png">
   <link rel="stylesheet" href="./styles.css">
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -36,7 +38,7 @@
       </div>
       <div id="pContainer"></div>
       <div class="loader-center">
-        <div class="l-initials">AB</div>
+        <div class="loader-logo-container"></div>
         <div class="l-sub">Portfolio</div>
       </div>
     </div>
@@ -74,6 +76,8 @@
     </button>
   </nav>
 
+
+
   <!-- ══ HERO ══ -->
   <section id="hero">
     <div class="hero-left">
@@ -91,9 +95,9 @@
     <div class="hero-right">
       <div class="photo-card">
         <div class="fring"></div>
-        <div class="photo-frame glass">
-          <div class="ico">🧑‍💻</div>
-          <span>Your Photo Here</span>
+        <div class="photo-frame glass" style="padding: 0;">
+          <img src="./profile.jpg" alt="Abhijeet"
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" />
         </div>
         <div class="pchip">Open to Work</div>
       </div>
@@ -213,18 +217,19 @@
         </div>
         <div style="margin-bottom: 20px;">
           <div class="sktop" style="margin-bottom: 0;"><span class="skname"
-              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ AWS / Cloud</span></div>
+              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ Progressive Web Design</span></div>
         </div>
         <div style="margin-bottom: 20px;">
           <div class="sktop" style="margin-bottom: 0;"><span class="skname"
-              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ React Native / Flutter</span></div>
+              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ AWS / Cloud</span></div>
         </div>
       </div>
       <div class="reveal">
+        <!-- Coding Languages & Frameworks -->
         <p
-          style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:28px;font-weight:600;">
-          Technologies & AI Tools</p>
-        <div class="tcloud">
+          style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:600;">
+          Coding Languages & Frameworks</p>
+        <div class="tcloud" style="margin-bottom: 32px;">
           <span class="tpill glass">JavaScript</span><span class="tpill glass">TypeScript</span><span
             class="tpill glass">React</span>
           <span class="tpill glass">Next.js</span><span class="tpill glass">Supabase</span><span
@@ -233,16 +238,22 @@
             class="tpill glass">Tailwind CSS</span>
           <span class="tpill glass">Python</span><span class="tpill glass">Pandas</span><span
             class="tpill glass">NumPy</span>
-          <span class="tpill glass">SQL</span><span class="tpill glass">Tableau</span><span
-            class="tpill glass">PowerBI</span>
+          <span class="tpill glass">SQL</span><span class="tpill glass">GraphQL</span>
+          <span class="tpill glass">Docker</span><span class="tpill glass">AWS</span>
+        </div>
+
+        <!-- AI Tools & Technologies -->
+        <p
+          style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:600;">
+          AI Tools & Technologies</p>
+        <div class="tcloud">
           <span class="tpill glass">OpenAI</span><span class="tpill glass">LangChain</span><span
             class="tpill glass">Hugging Face</span>
           <span class="tpill glass">Gemini 2.5</span><span class="tpill glass">Pinecone Vector DB</span><span
             class="tpill glass">RAG</span>
-          <span class="tpill glass">Docker</span><span class="tpill glass">Kubernetes</span><span
-            class="tpill glass">AWS</span>
-          <span class="tpill glass">Vercel</span><span class="tpill glass">Figma</span><span
-            class="tpill glass">GraphQL</span>
+          <span class="tpill glass">Tableau</span><span class="tpill glass">PowerBI</span>
+          <span class="tpill glass">Framer</span><span class="tpill glass">Lovable</span>
+          <span class="tpill glass">Figma</span><span class="tpill glass">Vercel</span>
         </div>
       </div>
     </div>
