@@ -3,15 +3,6 @@ const lFill = document.getElementById('lFill'), lNum = document.getElementById('
 const steps = [{ l: 'Setting up design…', s: 'ls1' }, { l: 'Loading projects…', s: 'ls2' }, { l: 'Launching portfolio…', s: 'ls3' }];
 let p = 0;
 
-// spawn particles
-const pc = document.getElementById('pContainer');
-const cols = ['#6366f1', '#8b5cf6', '#ec4899', '#0ea5e9', '#f59e0b'];
-for (let i = 0; i < 14; i++) {
-  const d = document.createElement('div'); const sz = 4 + Math.random() * 8;
-  d.className = 'particle';
-  d.style.cssText = `width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random() * 5)]};left:${38 + Math.random() * 24}%;top:${38 + Math.random() * 24}%;animation-duration:${1.5 + Math.random() * 2}s;animation-delay:${Math.random() * 2}s;box-shadow:0 0 8px currentColor;`;
-  pc.appendChild(d);
-}
 
 const iv = setInterval(() => {
   p += Math.random() * 13; if (p >= 100) p = 100;
@@ -42,13 +33,28 @@ const stEl = document.querySelector('.hstats'); if (stEl) sObs.observe(stEl);
 
 // ── NAV ACTIVE ──
 const secs = document.querySelectorAll('section[id]'), nls = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => { let cur = ''; secs.forEach(s => { if (window.scrollY >= s.offsetTop - 220) cur = s.id; }); nls.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--indigo)' : ''; }); });
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 220) cur = s.id;
+  });
+  nls.forEach(a => {
+    // Clear any lingering inline styles from the previous version
+    a.style.color = '';
+    
+    if (a.getAttribute('href') === '#' + cur) {
+      a.classList.add('active');
+    } else {
+      a.classList.remove('active');
+    }
+  });
+});
 
 // ── DYNAMIC GREETING ──
 const gEl = document.getElementById('greeting');
 if (gEl) {
   const h = new Date().getHours();
-  const g = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  const g = h < 12 ? 'Hi, Good morning' : h < 17 ? 'Hi, Good afternoon' : h < 21 ? 'Hi, Good evening' : 'Hi Night Owl!';
   gEl.textContent = `${g}, I'm`;
 }
 
@@ -67,4 +73,36 @@ if (hamburger && navLinks) {
       navLinks.classList.remove('open');
     });
   });
+}
+
+// ── DYNAMIC ROTATING TITLES ──
+const roles = ["Front End Dev", "AI Integration", "Data Analyst", "ML Engineer"];
+let roleIndex = 0;
+const roleEl = document.getElementById('dynamic-role');
+
+if (roleEl) {
+  // Set initial text
+  roleEl.textContent = roles[0];
+  
+  setInterval(() => {
+    // Phase 1: Fade out and move UP
+    roleEl.style.opacity = '0';
+    roleEl.style.transform = 'translateY(-10px)';
+    
+    setTimeout(() => {
+      // Phase 2: Change text and reset to BOTTOM position instantly
+      roleIndex = (roleIndex + 1) % roles.length;
+      roleEl.style.transition = 'none'; // Disable transition for instant reset
+      roleEl.style.transform = 'translateY(10px)';
+      roleEl.textContent = roles[roleIndex];
+      
+      // Force reflow to ensure the 'none' transition is applied before we turn it back on
+      roleEl.offsetHeight; 
+      
+      // Phase 3: Fade in and move UP to center
+      roleEl.style.transition = 'all 0.4s ease';
+      roleEl.style.opacity = '1';
+      roleEl.style.transform = 'translateY(0)';
+    }, 400); 
+  }, 2500);
 }

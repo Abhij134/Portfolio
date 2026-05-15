@@ -11,8 +11,8 @@
     --teal: #0891b2;
     --pink: #db2777;
     --dark: #020617;
-    --text: #1e293b;
-    --muted: #64748b;
+    --text: #0f172a;
+    --muted: #475569;
     --border: rgba(15, 23, 42, 0.12);
     --radius: 20px;
 }
@@ -33,7 +33,7 @@ body {
     background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.6;
     overflow-x: hidden;
     word-break: break-word;
@@ -369,55 +369,124 @@ body {
 /* ── NAV ── */
 nav {
     position: fixed;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
-    background: var(--glass);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1.5px solid rgba(15, 23, 42, 0.18);
-    border-radius: 100px;
-    padding: 12px 35px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(32px) saturate(190%);
+    -webkit-backdrop-filter: blur(32px) saturate(190%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 60px;
     display: flex;
     align-items: center;
-    gap: 32px;
-    box-shadow: 0 8px 40px rgba(15, 23, 42, .14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    justify-content: space-between;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
     opacity: 0;
-    animation: navPop .7s .9s forwards cubic-bezier(.34, 1.56, .64, 1);
+    animation: navSlideIn .7s forwards cubic-bezier(.34, 1.56, .64, 1);
 }
 
-@keyframes navPop {
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .3s ease;
+    padding-bottom: 6px;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(15, 23, 42, 0.05);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--indigo);
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-links a:hover {
+    color: var(--text);
+}
+
+.nav-links a:hover::before {
+    opacity: 1;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:active::after,
+.nav-links a.active::after {
+    width: 100%;
+    background: var(--indigo);
+}
+
+.nav-links a.active {
+    color: var(--indigo) !important;
+}
+
+.nav-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.nav-brand span {
+    color: inherit;
+}
+
+@keyframes navSlideIn {
     from {
         opacity: 0;
-        transform: translateX(-50%) translateY(-20px) scale(.95);
+        transform: translateY(-20px);
     }
 
     to {
         opacity: 1;
-        transform: translateX(-50%) scale(1);
+        transform: translateY(0);
     }
 }
 
-.nav-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-}
 
-
-.nav-links a {
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color .3s;
-}
-
-.nav-links a:hover {
-    color: var(--indigo);
-}
 
 .nav-cta {
     background: linear-gradient(135deg, var(--indigo), var(--violet));
@@ -615,6 +684,11 @@ section {
     margin-bottom: 24px;
     opacity: 0;
     animation: fUp .8s 1.3s forwards;
+}
+
+#dynamic-role {
+    display: inline-block;
+    transition: all 0.4s ease;
 }
 
 .hbio {
@@ -1704,59 +1778,64 @@ footer {
 
     /* Nav */
     nav {
-        left: 16px;
-        right: 16px;
-        transform: none;
-        width: calc(100% - 32px);
-        border-radius: 16px;
-        padding: 10px 20px;
-        flex-wrap: wrap;
-        gap: 0;
+        padding: 12px 24px;
         justify-content: space-between;
     }
 
-    @keyframes navPop {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
+    .nav-brand {
+        font-size: 17px;
+        z-index: 1002;
+    }
 
-        to {
-            opacity: 1;
-            transform: none;
-        }
+    .nav-logo {
+        width: 24px;
+        height: 24px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        padding: 0;
+        transform: none;
+        left: auto;
+        list-style: none;
+        display: flex;
+    }
+
+    .nav-links.open {
+        right: 0;
+    }
+
+    .nav-links li {
+        border: none;
+    }
+
+    .nav-links a {
+        font-size: 24px;
+        color: var(--text);
+        padding: 10px;
     }
 
     .nav-hamburger {
         display: flex;
-    }
-
-    .nav-links {
-        display: flex;
-        width: auto;
-        flex-direction: row;
-        gap: 16px;
-        padding: 0;
-        order: 2;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .nav-links li {
-        border-top: 1px solid var(--border);
-    }
-
-    .nav-links a {
-        display: block;
-        padding: 12px 4px;
-        font-size: 14px;
+        z-index: 1002;
     }
 
     /* Sections */
     section {
-        padding: 70px 28px;
+        padding: 70px 24px;
     }
 
     /* Hero */
@@ -2170,7 +2249,7 @@ footer {
 @media (max-width: 400px) {
 
     nav {
-        padding: 8px 12px;
+        padding: 10px 16px;
     }
 
     .hname {
