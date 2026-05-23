@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio – Abhijeet</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=Fira+Code:wght@400;500;600&display=swap"
     rel="stylesheet">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="./logo.png">
@@ -18,44 +18,73 @@
 <body>
 
   <div class="bg-blobs">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-    <div class="blob b4"></div>
+    <div class="blob b1"
+      style="background:radial-gradient(circle,rgba(129,140,248,0.3),rgba(99,102,241,0.2));opacity:0.2;"></div>
+    <div class="blob b2"
+      style="background:radial-gradient(circle,rgba(192,132,252,0.3),rgba(168,85,247,0.2));opacity:0.15;"></div>
+    <div class="blob b3"
+      style="background:radial-gradient(circle,rgba(34,211,238,0.25),rgba(6,182,212,0.15));opacity:0.15;"></div>
+    <div class="blob b4"
+      style="background:radial-gradient(circle,rgba(244,114,182,0.2),rgba(236,72,153,0.15));opacity:0.1;"></div>
   </div>
+  <div class="bg-mesh"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
 
-  <!-- ══ CREATIVE LOADER ══ -->
+  <!-- FUTURISTIC LOADER -->
   <div id="loader">
-    <div class="loader-scene">
-      <div class="orbit o1">
-        <div class="odot od1"></div>
+    <div class="loader-grid"></div>
+    <!-- Particle canvas -->
+    <canvas id="loaderCanvas"></canvas>
+
+    <!-- Outer glow rings -->
+    <div class="loader-ring loader-ring-1"></div>
+    <div class="loader-ring loader-ring-2"></div>
+    <div class="loader-ring loader-ring-3"></div>
+
+    <div class="scene" id="loaderScene">
+      <div class="logo-box" id="loaderLogoBox">
+        <!-- Corner brackets -->
+        <div class="bracket bracket-tl"></div>
+        <div class="bracket bracket-tr"></div>
+        <div class="bracket bracket-bl"></div>
+        <div class="bracket bracket-br"></div>
+
+        <!-- Extra inner glow halo behind SVG -->
+        <div class="logo-halo"></div>
+
+        <svg class="logo-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+          <!-- Outer triangle -->
+          <path class="stroke outer-tri" d="M50 10 L10 90 L90 90 Z" />
+          <path class="outer-tri-glow" d="M50 10 L10 90 L90 90 Z" />
+          <!-- Inner left leg -->
+          <path class="stroke leg-left" d="M50 28 L30 90" />
+          <path class="leg-left-flow" d="M50 28 L30 90" />
+          <!-- Inner right leg -->
+          <path class="stroke leg-right" d="M50 28 L70 90" />
+          <path class="leg-right-flow" d="M50 28 L70 90" />
+          <!-- Crossbar -->
+          <path class="stroke crossbar" d="M35 68 L65 68" />
+          <path class="crossbar-scan" d="M35 68 L65 68" />
+          <!-- Vertex dots for extra glow -->
+          <circle class="vert-dot" cx="50" cy="10" r="3" />
+          <circle class="vert-dot" cx="10" cy="90" r="3" />
+          <circle class="vert-dot" cx="90" cy="90" r="3" />
+        </svg>
       </div>
-      <div class="orbit o2">
-        <div class="odot od2"></div>
+
+      <div class="percent" id="lNum">
+        0
+        <div class="percent-bar">
+          <div class="percent-fill" id="lFill"></div>
+        </div>
       </div>
-      <div class="orbit o3">
-        <div class="odot od3"></div>
-      </div>
-      <div id="pContainer"></div>
-      <div class="loader-center">
-        <div class="loader-logo-container"></div>
-        <div class="l-sub">Portfolio</div>
-      </div>
-    </div>
-    <div class="loader-bottom">
-      <div class="loader-pct-row">
-        <span class="l-num" id="lNum">0%</span>
-        <span class="l-lbl" id="lLbl">Initializing…</span>
-      </div>
-      <div class="l-track">
-        <div class="l-fill" id="lFill"></div>
-      </div>
-      <div class="l-steps">
-        <span class="l-step" id="ls1">Design</span>
-        <span style="color:var(--muted);opacity:.3;font-size:10px">·</span>
-        <span class="l-step" id="ls2">Code</span>
-        <span style="color:var(--muted);opacity:.3;font-size:10px">·</span>
-        <span class="l-step" id="ls3">Deploy</span>
+
+      <div class="status">
+        <span>
+          Initializing<br>
+          Loading<br>
+          Ready
+        </span>
       </div>
     </div>
   </div>
@@ -67,9 +96,10 @@
       <span>Abhijeet.dev</span>
     </div>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#services" class="nav-item-link">Services</a></li>
+      <li><a href="#about" class="nav-item-link">About</a></li>
       <li><a href="#projects" class="nav-item-link">Projects</a></li>
       <li><a href="#skills" class="nav-item-link">Skills</a></li>
+      <li><a href="#experience" class="nav-item-link">Journey</a></li>
       <li><a href="#certifications" class="nav-item-link">Certifications</a></li>
       <li><a href="#contact" class="nav-item-link">Contact</a></li>
     </ul>
@@ -79,82 +109,440 @@
       <span></span>
     </button>
   </nav>
-
-
-
-  <!-- ══ HERO ══ -->
   <section id="hero">
     <div class="hero-left">
       <p class="hgreet" id="greeting">Hello, I'm</p>
       <h1 class="hname"><span class="grad">Abhijeet</span></h1>
       <p class="hrole"><span id="dynamic-role"></span></p>
-      <p class="hbio">I build end-to-end scalable web applications, intuitive
-        UI/UX, and clear data visualisations that turn complex information into decisions. Passionate
-        about integrating AI into real products that solve real problems</p>
+      <p class="hbio">I build end-to-end scalable web applications, intuitive UI/UX, and clear data visualisations that turn complex information into decisions. Passionate about integrating AI into real products that solve real problems</p>
       <div class="hbtns">
         <a href="#projects" class="btn-p">View My Work →</a>
         <a href="#contact" class="btn-o">Let's Talk</a>
       </div>
-
     </div>
     <div class="hero-right">
-      <div class="photo-card">
-        <div class="fring"></div>
-        <div class="photo-frame glass" style="padding: 0;">
-          <img src="./profile.jpg" alt="Abhijeet"
-            style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;" />
+      <div class="device-container">
+        
+        <div class="device-mockup">
+          
+          <div class="device-screen-bezel">
+            <div class="device-camera-hole"></div> <div class="monitor-screen glass">
+              <div class="llm-header">
+                <div class="mac-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="llm-title">abhijeet_neural_core.sh</span>
+              </div>
+              
+              <div class="llm-body">
+                <div class="llm-line prompt-line">
+                  <span class="prompt-arrow">&gt;</span>
+                  <span id="typewriterText"></span><span class="cursor-blink">_</span>
+                </div>
+                
+                <div id="llmResponseBox" class="llm-response-box hidden">
+                  <p class="sys-msg">Accessing Abhijeet's Neural Net... [OK]</p>
+                  <p class="ai-msg">System Status: Full-Stack Engineer & AI/ML Specialist found. Ready to deploy.</p>
+                  
+                  <div class="llm-actions">
+                    <button class="llm-chip" onclick="runLlmQuery('tech_stack')">[Fetch Tech_Stack]</button>
+                    <button class="llm-chip" onclick="runLlmQuery('projects')">[Initialize Projects]</button>
+                    <button class="llm-chip" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">[Contact Protocol]</button>
+                  </div>
+                  <div id="llmDynamicOutput" class="llm-dynamic-output"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="device-keyboard-base">
+            <div class="device-trackpad"></div>
+          </div>
+          
         </div>
-        <div class="pchip">Open to Work</div>
       </div>
     </div>
-    <div class="scroll-hint">
-      <div class="sline"></div>Scroll
-    </div>
+    <a href="#about" class="scroll-down-indicator" aria-label="Scroll down">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </a>
   </section>
 
 
 
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="shead reveal">
-      <span class="stag">What I Do</span>
-      <h2 class="stitle">Services I <em>Offer</em></h2>
-      <p class="ssub">From concept to deployment — I bring ideas to life with code and design.</p>
+  <!-- ABOUT ME -->
+  <section id="about">
+    <div class="shead reveal" style="border:none;padding-left:0;">
+      <span class="stag">Who I Am</span>
+      <h2 class="stitle">About <em>Me</em></h2>
     </div>
-    <div class="sgrid">
-      <div class="scard glass reveal">
-        <div class="snum">01</div>
-        <div class="sicon" style="background:rgba(99,102,241,.12)">🌐</div>
-        <h3>Web Development</h3>
-        <p>Responsive, blazing-fast web apps using React, Next.js, Node.js and more.</p>
+    <div class="about-centered reveal">
+      <div class="about-photo-wrap">
+        <div class="about-ring"></div>
+        <div class="about-ring-blur"></div>
+        <div class="about-bg-mask"></div>
+        <img src="./profile.jpg" alt="Abhijeet Gautam" />
       </div>
-      <div class="scard glass reveal">
-        <div class="snum">02</div>
-        <div class="sicon" style="background:rgba(245,158,11,.12)">📱</div>
-        <h3>Mobile Apps</h3>
-        <p>Cross-platform apps with React Native and Flutter that feel truly native.</p>
+      <h3 class="about-name">Abhijeet Gautam</h3>
+      <div class="about-role-wrap" aria-live="polite">
+        <span id="about-role" class="about-role-text">Front End Developer</span>
       </div>
-      <div class="scard glass reveal">
-        <div class="snum">03</div>
-        <div class="sicon" style="background:rgba(236,72,153,.12)">🎨</div>
-        <h3>UI/UX Design</h3>
-        <p>Intuitive interfaces and delightful user experiences crafted in Figma.</p>
+      <p class="about-bio">Full-stack developer and data analyst who builds end-to-end scalable web applications,
+        intuitive
+        UI/UX, and clear data visualisations that turn complex information into decisions. Passionate
+        about integrating AI into real products that solve real problems</p>
+      <div class="about-tags" style="justify-content:center;">
+        <span class="about-tag">Next.js</span>
+        <span class="about-tag">Prisma</span>
+        <span class="about-tag">Supabase</span>
+        <span class="about-tag">Python</span>
+        <span class="about-tag">MongoDB</span>
+        <span class="about-tag">AI/ML</span>
       </div>
-      <div class="scard glass reveal">
-        <div class="snum">04</div>
-        <div class="sicon" style="background:rgba(14,165,233,.12)">☁️</div>
-        <h3>Cloud & Backend</h3>
-        <p>Scalable APIs and cloud infrastructure on AWS, GCP, and Vercel.</p>
+    </div>
+
+    <div class="shead reveal" style="margin-top:60px;border:none;padding-left:0;">
+      <h2 class="stitle">Core <em>Expertise</em></h2>
+    </div>
+    <div class="expertise-grid">
+      <div class="expertise-card reveal">
+        <div class="card-icon"
+          style="color:#22d3ee;border-color:rgba(34,211,238,0.2);background:rgba(34,211,238,0.08);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+        </div>
+        <div class="card-title">Programming</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>Python / SQL <span class="pct">93%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:93%;background:#22d3ee;box-shadow:0 0 8px rgba(34,211,238,0.4);"></div>
+            </div>
+          </div>
+          <div class="skill-item"><span>TypeScript / JS <span class="pct">88%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:88%;background:#22d3ee;box-shadow:0 0 8px rgba(34,211,238,0.4);"></div>
+            </div>
+          </div>
+          <div class="skill-item"><span>C++ / C <span class="pct">80%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:80%;background:#22d3ee;box-shadow:0 0 8px rgba(34,211,238,0.4);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="card-icon"
+          style="color:#c084fc;border-color:rgba(192,132,252,0.2);background:rgba(192,132,252,0.08);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+          </svg>
+        </div>
+        <div class="card-title">AI &amp; ML</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>Gemini / OpenAI <span class="pct">95%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:95%;background:#c084fc;box-shadow:0 0 8px rgba(192,132,252,0.4);">
+              </div>
+            </div>
+          </div>
+          <div class="skill-item"><span>RAG / LangChain <span class="pct">92%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:92%;background:#c084fc;box-shadow:0 0 8px rgba(192,132,252,0.4);">
+              </div>
+            </div>
+          </div>
+          <div class="skill-item"><span>Pinecone / Pandas <span class="pct">88%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:88%;background:#c084fc;box-shadow:0 0 8px rgba(192,132,252,0.4);">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="card-icon"
+          style="color:#818cf8;border-color:rgba(129,140,248,0.2);background:rgba(129,140,248,0.08);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+        </div>
+        <div class="card-title">Frontend &amp; Tools</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>React / Next.js <span class="pct">94%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:94%;background:#818cf8;box-shadow:0 0 8px rgba(129,140,248,0.4);">
+              </div>
+            </div>
+          </div>
+          <div class="skill-item"><span>Tailwind / Framer <span class="pct">90%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:90%;background:#818cf8;box-shadow:0 0 8px rgba(129,140,248,0.4);">
+              </div>
+            </div>
+          </div>
+          <div class="skill-item"><span>Figma / Tableau <span class="pct">88%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:88%;background:#818cf8;box-shadow:0 0 8px rgba(129,140,248,0.4);">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="card-icon"
+          style="color:#fbbf24;border-color:rgba(251,191,36,0.2);background:rgba(251,191,36,0.08);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <ellipse cx="12" cy="5" rx="9" ry="3" />
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+          </svg>
+        </div>
+        <div class="card-title">Backend &amp; Deploy</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>Supabase / Node <span class="pct">92%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:92%;background:#fbbf24;box-shadow:0 0 8px rgba(251,191,36,0.4);"></div>
+            </div>
+          </div>
+          <div class="skill-item"><span>PostgreSQL / AWS <span class="pct">88%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:88%;background:#fbbf24;box-shadow:0 0 8px rgba(251,191,36,0.4);"></div>
+            </div>
+          </div>
+          <div class="skill-item"><span>Vercel / FastAPI <span class="pct">90%</span></span>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width:90%;background:#fbbf24;box-shadow:0 0 8px rgba(251,191,36,0.4);"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+
+  <!-- TECH MARQUEE -->
+  <div class="tech-marquee-wrap" aria-hidden="true">
+    <div class="tech-marquee-track">
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#4B8BBE">
+          <path
+            d="M12 2C9.3 2 7 3.7 7 6v2h5v1H5.5C3.6 9 2 10.7 2 12.5v3C2 17.4 3.6 19 5.5 19H7v-2.5C7 14.6 9.1 13 12 13s5 1.6 5 3.5V19h1.5c1.9 0 3.5-1.6 3.5-3.5v-3C22 10.7 20.4 9 18.5 9H13V8h5V6c0-2.3-2.3-4-6-4zm-1.5 2.5a1 1 0 110 2 1 1 0 010-2zM12 14a1 1 0 110 2 1 1 0 010-2z"
+            fill="currentColor" />
+        </svg>
+        <span>Python</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#61DAFB">
+          <circle cx="12" cy="12" r="2" fill="currentColor" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" stroke-width="1.5"
+            transform="rotate(60 12 12)" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" stroke-width="1.5"
+            transform="rotate(120 12 12)" />
+        </svg>
+        <span>React</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#ffffff">
+          <rect width="24" height="24" rx="4" fill="currentColor" opacity="0.1" />
+          <path d="M7 17V7l10 10V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" fill="none" />
+        </svg>
+        <span>Next.js</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#3178C6">
+          <rect width="24" height="24" rx="3" fill="currentColor" opacity="0.15" />
+          <path d="M6 12h12M10 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><text x="12" y="16"
+            font-size="9" font-weight="bold" text-anchor="middle" fill="currentColor">TS</text>
+        </svg>
+        <span>TypeScript</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#339933">
+          <polygon points="12,2 22,8 22,16 12,22 2,16 2,8" fill="none" stroke="currentColor" stroke-width="1.5" /><text
+            x="12" y="15" font-size="7" font-weight="bold" text-anchor="middle" fill="currentColor">JS</text>
+        </svg>
+        <span>Node.js</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#2496ED">
+          <rect x="2" y="10" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <rect x="4" y="12" width="3" height="3" fill="currentColor" />
+          <rect x="8" y="12" width="3" height="3" fill="currentColor" />
+          <rect x="12" y="12" width="3" height="3" fill="currentColor" />
+          <path d="M20 10s0-4-4-4H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" />
+        </svg>
+        <span>Docker</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#FF9900">
+          <path d="M6 16c-2.2-1-4-3.4-4-6 0-3.9 3.1-7 7-7 2.1 0 4 .9 5.3 2.4" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" fill="none" />
+          <path d="M10 21c4 0 8-3 8-8 0-2-.7-3.8-2-5.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            fill="none" /><text x="12" y="14" font-size="7" font-weight="bold" text-anchor="middle"
+            fill="currentColor">AWS</text>
+        </svg>
+        <span>AWS</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#ffffff">
+          <polygon points="12,3 22,21 2,21" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linejoin="round" />
+        </svg>
+        <span>Vercel</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#3ECF8E">
+          <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linejoin="round" />
+        </svg>
+        <span>Supabase</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#336791">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5" /><text x="12" y="16"
+            font-size="8" font-weight="bold" text-anchor="middle" fill="currentColor">PG</text>
+        </svg>
+        <span>PostgreSQL</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#5A67D8">
+          <polygon points="12,2 20,20 4,14" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linejoin="round" />
+          <line x1="12" y1="2" x2="12" y2="20" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <span>Prisma</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#F24E1E">
+          <rect x="8" y="2" width="8" height="8" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <rect x="8" y="10" width="8" height="6" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <rect x="8" y="16" width="4" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <span>Figma</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#ffffff">
+          <path
+            d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.8.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5C19.1 20.2 22 16.4 22 12c0-5.5-4.5-10-10-10z"
+            fill="currentColor" />
+        </svg>
+        <span>GitHub</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#4B8BBE">
+          <path
+            d="M12 2C9.3 2 7 3.7 7 6v2h5v1H5.5C3.6 9 2 10.7 2 12.5v3C2 17.4 3.6 19 5.5 19H7v-2.5C7 14.6 9.1 13 12 13s5 1.6 5 3.5V19h1.5c1.9 0 3.5-1.6 3.5-3.5v-3C22 10.7 20.4 9 18.5 9H13V8h5V6c0-2.3-2.3-4-6-4zm-1.5 2.5a1 1 0 110 2 1 1 0 010-2zM12 14a1 1 0 110 2 1 1 0 010-2z"
+            fill="currentColor" />
+        </svg>
+        <span>Python</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#61DAFB">
+          <circle cx="12" cy="12" r="2" fill="currentColor" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" stroke-width="1.5"
+            transform="rotate(60 12 12)" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" stroke-width="1.5"
+            transform="rotate(120 12 12)" />
+        </svg>
+        <span>React</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#ffffff">
+          <rect width="24" height="24" rx="4" fill="currentColor" opacity="0.1" />
+          <path d="M7 17V7l10 10V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" fill="none" />
+        </svg>
+        <span>Next.js</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#3178C6"><text x="12" y="16"
+            font-size="9" font-weight="bold" text-anchor="middle" fill="currentColor">TS</text></svg>
+        <span>TypeScript</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#339933">
+          <polygon points="12,2 22,8 22,16 12,22 2,16 2,8" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <span>Node.js</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#2496ED">
+          <rect x="2" y="10" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <rect x="4" y="12" width="3" height="3" fill="currentColor" />
+          <rect x="8" y="12" width="3" height="3" fill="currentColor" />
+          <rect x="12" y="12" width="3" height="3" fill="currentColor" />
+        </svg>
+        <span>Docker</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#FF9900"><text x="12" y="15"
+            font-size="8" font-weight="bold" text-anchor="middle" fill="currentColor">AWS</text></svg>
+        <span>AWS</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#ffffff">
+          <polygon points="12,3 22,21 2,21" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linejoin="round" />
+        </svg>
+        <span>Vercel</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#3ECF8E">
+          <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linejoin="round" />
+        </svg>
+        <span>Supabase</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+      <div class="tech-logo-item">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:#5A67D8">
+          <polygon points="12,2 20,20 4,14" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linejoin="round" />
+          <line x1="12" y1="2" x2="12" y2="20" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <span>Prisma</span>
+      </div>
+      <div class="tech-marquee-dot"></div>
+    </div>
+  </div>
 
   <!-- PROJECTS -->
   <section id="projects">
-    <div class="ph">
-      <div class="reveal"><span class="stag">Portfolio</span>
-        <h2 class="stitle">Featured <em>Projects</em></h2>
-      </div>
+    <div class="shead reveal">
+      <span class="stag">Portfolio</span>
+      <h2 class="stitle">Featured <em>Projects</em></h2>
     </div>
     <div class="pgrid">
       <!-- FinanceNeo Flagship Card -->
@@ -190,70 +578,108 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills">
-    <div class="shead reveal"><span class="stag">Expertise</span>
-      <h2 class="stitle">My <em>Skills</em></h2>
-      <p class="ssub">Technologies I use to craft modern digital solutions.</p>
-    </div>
-    <div class="sklayout">
-      <div class="skbars reveal">
-        <div style="margin-bottom: 20px;">
-          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
-              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ React / Next.js</span></div>
-        </div>
-        <div style="margin-bottom: 20px;">
-          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
-              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ Backend (Supabase / Prisma)</span>
-          </div>
-        </div>
-        <div style="margin-bottom: 20px;">
-          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
-              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ Python / FastAPI</span></div>
-        </div>
-        <div style="margin-bottom: 20px;">
-          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
-              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ UI/UX Design (Figma)</span></div>
-        </div>
-        <div style="margin-bottom: 20px;">
-          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
-              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ Progressive Web Design</span></div>
-        </div>
-        <div style="margin-bottom: 20px;">
-          <div class="sktop" style="margin-bottom: 0;"><span class="skname"
-              style="font-weight: 600; font-size: 16px; color: var(--primary);">✦ AWS / Cloud</span></div>
-        </div>
-      </div>
-      <div class="reveal">
-        <!-- Coding Languages & Frameworks -->
-        <p
-          style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:600;">
-          Coding Languages & Frameworks</p>
-        <div class="tcloud" style="margin-bottom: 32px;">
-          <span class="tpill glass">JavaScript</span><span class="tpill glass">TypeScript</span><span
-            class="tpill glass">React</span>
-          <span class="tpill glass">Next.js</span><span class="tpill glass">Supabase</span><span
-            class="tpill glass">Prisma</span>
-          <span class="tpill glass">PostgreSQL</span><span class="tpill glass">Node.js</span><span
-            class="tpill glass">Tailwind CSS</span>
-          <span class="tpill glass">Python</span><span class="tpill glass">Pandas</span><span
-            class="tpill glass">NumPy</span>
-          <span class="tpill glass">SQL</span><span class="tpill glass">GraphQL</span>
-          <span class="tpill glass">Docker</span><span class="tpill glass">AWS</span>
-        </div>
+  <section id="skills" class="skills-section">
 
-        <!-- AI Tools & Technologies -->
-        <p
-          style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:600;">
-          AI Tools & Technologies</p>
-        <div class="tcloud">
-          <span class="tpill glass">OpenAI</span><span class="tpill glass">LangChain</span><span
-            class="tpill glass">Hugging Face</span>
-          <span class="tpill glass">Gemini 2.5</span><span class="tpill glass">Pinecone Vector DB</span><span
-            class="tpill glass">RAG</span>
-          <span class="tpill glass">Tableau</span><span class="tpill glass">PowerBI</span>
-          <span class="tpill glass">Framer</span><span class="tpill glass">Lovable</span>
-          <span class="tpill glass">Figma</span><span class="tpill glass">Vercel</span>
+
+    <div class="shead reveal">
+      <span class="stag">Expertise</span>
+      <h2 class="stitle">Technologies & <em>Skills</em></h2>
+      <p class="ssub">Modern tools I use to craft interactive digital experiences and data-driven solutions.</p>
+    </div>
+
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="frontend">Frontend</button>
+      <button class="filter-btn" data-filter="backend">Backend</button>
+      <button class="filter-btn" data-filter="data">Data Viz</button>
+      <button class="filter-btn" data-filter="design">Design</button>
+      <button class="filter-btn" data-filter="cloud">Cloud</button>
+    </div>
+
+    <div class="skills-wrapper">
+      <!-- React / Next.js -->
+      <div class="skill-card sk-reveal" data-color="cyan" data-category="frontend">
+        <div class="skill-header">
+          <div class="skill-icon" style="color: var(--sk-accent-cyan);">⚛</div>
+          <div class="skill-title">React / Next.js</div>
         </div>
+        <div class="skill-tags">
+          <span class="skill-tag">React 19</span><span class="skill-tag">Next.js 15</span>
+          <span class="skill-tag">TypeScript</span><span class="skill-tag">Zustand</span>
+        </div>
+        <div class="skill-bar-container">
+          <div class="skill-bar" style="background: linear-gradient(90deg, var(--sk-accent-cyan), #22d3ee);"
+            data-width="95"></div>
+        </div>
+        <div class="skill-level"><span>Proficiency</span><span>95%</span></div>
+      </div>
+
+      <!-- Backend -->
+      <div class="skill-card sk-reveal" data-color="purple" data-category="backend">
+        <div class="skill-header">
+          <div class="skill-icon" style="color: var(--sk-accent-purple);">◈</div>
+          <div class="skill-title">Backend & Database</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Supabase</span><span class="skill-tag">Prisma</span>
+          <span class="skill-tag">PostgreSQL</span><span class="skill-tag">GraphQL</span>
+        </div>
+        <div class="skill-bar-container">
+          <div class="skill-bar" style="background: linear-gradient(90deg, var(--sk-accent-purple), #a78bfa);"
+            data-width="88"></div>
+        </div>
+        <div class="skill-level"><span>Proficiency</span><span>88%</span></div>
+      </div>
+
+      <!-- Python / FastAPI -->
+      <div class="skill-card sk-reveal" data-color="blue" data-category="backend">
+        <div class="skill-header">
+          <div class="skill-icon" style="color: var(--sk-accent-blue);">🐍</div>
+          <div class="skill-title">Python / FastAPI</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python 3.12</span><span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span>
+        </div>
+        <div class="skill-bar-container">
+          <div class="skill-bar" style="background: linear-gradient(90deg, var(--sk-accent-blue), #60a5fa);"
+            data-width="90"></div>
+        </div>
+        <div class="skill-level"><span>Proficiency</span><span>90%</span></div>
+      </div>
+
+      <!-- Data Viz -->
+      <div class="skill-card sk-reveal" data-color="pink" data-category="data">
+        <div class="skill-header">
+          <div class="skill-icon" style="color: var(--sk-accent-pink);">📊</div>
+          <div class="skill-title">Data Visualization</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">D3.js</span><span class="skill-tag">Chart.js</span>
+          <span class="skill-tag">Tableau</span><span class="skill-tag">Power BI</span>
+        </div>
+        <div class="skill-bar-container">
+          <div class="skill-bar" style="background: linear-gradient(90deg, var(--sk-accent-pink), #f472b6);"
+            data-width="85"></div>
+        </div>
+        <div class="skill-level"><span>Proficiency</span><span>85%</span></div>
+      </div>
+
+      <!-- UI/UX Design -->
+      <div class="skill-card sk-reveal" data-color="orange" data-category="design">
+        <div class="skill-header">
+          <div class="skill-icon" style="color: var(--sk-accent-orange);">🎨</div>
+          <div class="skill-title">UI/UX Design</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span><span class="skill-tag">Design Systems</span>
+          <span class="skill-tag">Motion</span>
+        </div>
+        <div class="skill-bar-container">
+          <div class="skill-bar" style="background: linear-gradient(90deg, var(--sk-accent-orange), #fbbf24);"
+            data-width="92"></div>
+        </div>
+        <div class="skill-level"><span>Proficiency</span><span>92%</span></div>
       </div>
     </div>
   </section>
@@ -263,7 +689,7 @@
     <div class="shead reveal"><span class="stag">Journey</span>
       <h2 class="stitle">Work <em>Experience</em></h2>
     </div>
-    <div class="egrid" style="grid-template-columns: 1fr;">
+    <div class="egrid" style="grid-template-columns:1fr;">
       <div class="ecard glass reveal">
         <div class="edot" style="background:linear-gradient(135deg,var(--pink),var(--violet))"></div>
         <div class="erole">UI/UX Designer</div>
@@ -276,8 +702,7 @@
         <div class="edate">4th Year (Current)</div>
         <div class="erole">BCA (Hons) Specialization in Data Analytics</div>
         <div class="edesc">Conducting research in Data Analytics alongside core studies. Active in software engineering
-          and data analysis.
-        </div>
+          and data analysis.</div>
       </div>
     </div>
   </section>
@@ -290,7 +715,7 @@
     </div>
     <div class="cgrid">
       <div class="ccard glass reveal" onclick="document.getElementById('certModal').classList.add('active')"
-        style="cursor: pointer;">
+        style="cursor:pointer;">
         <div class="cico" style="background:rgba(99,102,241,.12)">📊</div>
         <div>
           <div class="ctitle">GenAI Powered Data Analytics</div>
@@ -299,7 +724,7 @@
         </div>
       </div>
       <div class="ccard glass reveal" onclick="document.getElementById('deloitteModal').classList.add('active')"
-        style="cursor: pointer;">
+        style="cursor:pointer;">
         <div class="cico" style="background:rgba(20,184,166,.12)">📈</div>
         <div>
           <div class="ctitle">Data Analytics Job Simulation</div>
@@ -308,7 +733,7 @@
         </div>
       </div>
       <div class="ccard glass reveal" onclick="document.getElementById('tataVisModal').classList.add('active')"
-        style="cursor: pointer;">
+        style="cursor:pointer;">
         <div class="cico" style="background:rgba(236,72,153,.12)">📊</div>
         <div>
           <div class="ctitle">Data Visualisation</div>
@@ -317,7 +742,7 @@
         </div>
       </div>
       <div class="ccard glass reveal" onclick="document.getElementById('ciscoModal').classList.add('active')"
-        style="cursor: pointer;">
+        style="cursor:pointer;">
         <div class="cico" style="background:rgba(14,165,233,.12)">🌐</div>
         <div>
           <div class="ctitle">CCNA: Introduction to Networks</div>
@@ -326,7 +751,7 @@
         </div>
       </div>
       <div class="ccard glass reveal" onclick="document.getElementById('nptelModal').classList.add('active')"
-        style="cursor: pointer;">
+        style="cursor:pointer;">
         <div class="cico" style="background:rgba(217,119,6,.12)">💡</div>
         <div>
           <div class="ctitle">Entrepreneurship (Elite)</div>
@@ -337,71 +762,68 @@
     </div>
   </section>
 
-  <!-- Testimonials removed as per request -->
-
   <!-- CONTACT -->
-  <section id="contact">
-    <div class="reveal">
+  <section id="contact" class="contact-section">
+    <div class="shead reveal">
       <span class="stag">Get in Touch</span>
-      <div class="ccta">Let's Build Something <em>Amazing</em></div>
-      <p class="ctxt">Have a project in mind? I'm open to discussing new opportunities and interesting ideas.</p>
-      <div class="clinks">
-        <a href="mailto:abhijeetg134@gmail.com" class="clink glass" title="Email me">
-          <span class="clico">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect width="20" height="16" x="2" y="4" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-          </span>
-          <div>
-            <div class="cllbl">Email</div>
-            <div class="clval">abhijeetg134@gmail.com</div>
-          </div>
-        </a>
-        <a href="https://www.linkedin.com/in/abhijeet-gautam134" class="clink glass" target="_blank"
-          rel="noopener noreferrer" title="LinkedIn Profile">
-          <span class="clico">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-          </span>
-          <div>
-            <div class="cllbl">LinkedIn</div>
-            <div class="clval">linkedin.com/in/abhijeet-gautam134</div>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/casper_prince7/" class="clink glass" target="_blank"
-          rel="noopener noreferrer" title="Instagram Profile">
-          <span class="clico">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-            </svg>
-          </span>
-          <div>
-            <div class="cllbl">Instagram</div>
-            <div class="clval">@casper_prince7</div>
-          </div>
-        </a>
-      </div>
+      <h2 class="stitle">Let's Build Something <em>Amazing</em></h2>
+      <p class="ssub">Have a project in mind? I'm open to discussing new opportunities and interesting ideas.</p>
     </div>
-    </div>
-    <div class="reveal">
-      <div class="cform">
-        <div class="frow">
-          <div class="fgrp"><label>First Name</label><input id="cf-firstname" type="text" placeholder="John"></div>
-          <div class="fgrp"><label>Last Name</label><input id="cf-lastname" type="text" placeholder="Doe"></div>
+    <div class="contact-body">
+      <div class="contact-links-col reveal">
+        <div class="clinks">
+          <a href="mailto:abhijeetg134@gmail.com" class="clink glass" title="Email me">
+            <span class="clico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg></span>
+            <div>
+              <div class="cllbl">Email</div>
+              <div class="clval">abhijeetg134@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/abhijeet-gautam134" class="clink glass" target="_blank"
+            rel="noopener noreferrer" title="LinkedIn Profile">
+            <span class="clico"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg></span>
+            <div>
+              <div class="cllbl">LinkedIn</div>
+              <div class="clval">linkedin.com/in/abhijeet-gautam134</div>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/casper_prince7/" class="clink glass" target="_blank"
+            rel="noopener noreferrer" title="Instagram Profile">
+            <span class="clico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg></span>
+            <div>
+              <div class="cllbl">Instagram</div>
+              <div class="clval">@casper_prince7</div>
+            </div>
+          </a>
         </div>
-        <div class="fgrp"><label>Email</label><input id="cf-email" type="email" placeholder="john@example.com"></div>
-        <div class="fgrp"><label>Subject</label><input id="cf-subject" type="text" placeholder="Project Inquiry"></div>
-        <div class="fgrp"><label>Message</label><textarea id="cf-message"
-            placeholder="Tell me about your project…"></textarea></div>
-        <div id="formAlert" style="display:none;font-family:'Syne',sans-serif;font-size:13px;margin-bottom:8px;"></div>
-        <button class="bsub" id="formSend" onclick="sendMessage()">Send Message →</button>
+      </div>
+      <div class="contact-form-col reveal">
+        <div class="cform">
+          <div class="frow">
+            <div class="fgrp"><label>First Name</label><input id="cf-firstname" type="text" placeholder="John"></div>
+            <div class="fgrp"><label>Last Name</label><input id="cf-lastname" type="text" placeholder="Doe"></div>
+          </div>
+          <div class="fgrp"><label>Email</label><input id="cf-email" type="email" placeholder="john@example.com"></div>
+          <div class="fgrp"><label>Subject</label><input id="cf-subject" type="text" placeholder="Project Inquiry">
+          </div>
+          <div class="fgrp"><label>Message</label><textarea id="cf-message"
+              placeholder="Tell me about your project…"></textarea></div>
+          <div id="formAlert" style="display:none;font-family:'Syne',sans-serif;font-size:13px;margin-bottom:8px;">
+          </div>
+          <button class="bsub" id="formSend" onclick="sendMessage()">Send Message →</button>
+        </div>
       </div>
     </div>
   </section>
@@ -468,85 +890,96 @@
     }
   </script>
 
-  <footer>
-    <div class="fcopy">© 2024 · Personal Portfolio · Crafted with ♥</div>
-    <div class="fsoc">
-      <a href="https://www.linkedin.com/in/abhijeet-gautam134" class="fsb glass" target="_blank"
-        rel="noopener noreferrer" title="LinkedIn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-        </svg>
-      </a>
-      <a href="https://www.instagram.com/casper_prince7/" class="fsb glass" target="_blank" rel="noopener noreferrer"
-        title="Instagram">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-        </svg>
-      </a>
+
+  <!-- FOOTER SECTION -->
+  <footer class="custom-footer">
+    <div class="footer-container">
+
+      <div>
+        <div class="brand-logo">
+          <span class="brand-prompt">&gt;_</span>
+          <span>Abhijeet<span class="text-cyan">.dev</span></span>
+        </div>
+        <p class="brand-bio">
+          BCA student at Galgotias University specializing in AI/ML. Building intelligent full-stack applications with
+          PHP, Python, and MongoDB that deliver measurable impact.
+        </p>
+
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/abhijeet-gautam134" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          <a href="https://github.com/Abhij134" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+              </path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/casper_prince7/" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="mailto:abhijeetg134@gmail.com" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="footer-heading">Navigation</h3>
+        <ul class="footer-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Journey</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer-heading">Get in Touch</h3>
+        <p style="margin-bottom: 1rem; text-align: left;">
+          Open for freelance projects, internships, and collaborations.
+        </p>
+        <a href="mailto:abhijeetg134@gmail.com" class="email-link">
+          <span>abhijeetg134@gmail.com</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom-bar">
+      <p>© 2026 Abhijeet Gautam. All rights reserved.</p>
+      <p>Designed & Built by Abhijeet</p>
     </div>
   </footer>
 
-  <style>
-    #btt {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 36px;
-      padding: 0 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 30px;
-      color: var(--primary);
-      font-size: 16px;
-      text-decoration: none;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-      overflow: hidden;
-      white-space: nowrap;
-    }
 
-    #btt .btt-txt {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-left: 0;
-      max-width: 0;
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
 
-    #btt:hover {
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-      transform: translateX(-50%) translateY(-3px);
-    }
 
-    #btt:hover .btt-txt {
-      max-width: 120px;
-      margin-left: 10px;
-      opacity: 1;
-    }
-  </style>
-  <a href="#" id="btt" class="glass">
-    ↑<span class="btt-txt">Scroll Up</span>
-  </a>
-  <script>
-    window.addEventListener('scroll', () => {
-      const btt = document.getElementById('btt');
-      if (window.scrollY > 300) { btt.style.opacity = '1'; btt.style.pointerEvents = 'auto'; }
-      else { btt.style.opacity = '0'; btt.style.pointerEvents = 'none'; }
-    });
-  </script>
   <!-- CERT MODAL -->
   <div class="modal-overlay" id="certModal" onclick="if(event.target===this) this.classList.remove('active')">
     <div class="modal-box">
