@@ -103,30 +103,44 @@
       <li><a href="#certifications" class="nav-item-link">Certifications</a></li>
       <li><a href="#contact" class="nav-item-link">Contact</a></li>
     </ul>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
   </nav>
+
+  <!-- FLOATING NAV TOGGLE — arrow chevron -->
+  <button class="nav-fab" id="navFab" aria-label="Toggle navigation">
+    <svg class="nav-fab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </button>
+
   <section id="hero">
     <div class="hero-left">
       <p class="hgreet" id="greeting">Hello, I'm</p>
       <h1 class="hname"><span class="grad">Abhijeet</span></h1>
-      <p class="hrole"><span id="dynamic-role"></span></p>
-      <p class="hbio">I build end-to-end scalable web applications, intuitive UI/UX, and clear data visualisations that turn complex information into decisions. Passionate about integrating AI into real products that solve real problems</p>
+
+      <div class="hero-role-wrap">
+        <div class="role-accent-bar"></div>
+        <p class="hrole"><span id="dynamic-role"></span></p>
+      </div>
+
+      <p class="hbio">I build end-to-end scalable web applications, intuitive UI/UX, and clear data visualisations that turn complex information into decisions.</p>
+
       <div class="hbtns">
-        <a href="#projects" class="btn-p">View My Work →</a>
+        <a href="#projects" class="btn-p">
+          <span class="btn-glow"></span>
+          View My Work →
+        </a>
         <a href="#contact" class="btn-o">Let's Talk</a>
       </div>
     </div>
     <div class="hero-right">
       <div class="device-container">
-        
+        <div class="monitor-shadow"></div>
+
         <div class="device-mockup">
-          
           <div class="device-screen-bezel">
-            <div class="device-camera-hole"></div> <div class="monitor-screen glass">
+            <div class="device-camera-hole"></div>
+
+            <div class="monitor-screen">
               <div class="llm-header">
                 <div class="mac-dots">
                   <span class="dot red"></span>
@@ -135,17 +149,17 @@
                 </div>
                 <span class="llm-title">abhijeet_neural_core.sh</span>
               </div>
-              
+
               <div class="llm-body">
                 <div class="llm-line prompt-line">
                   <span class="prompt-arrow">&gt;</span>
                   <span id="typewriterText"></span><span class="cursor-blink">_</span>
                 </div>
-                
+
                 <div id="llmResponseBox" class="llm-response-box hidden">
                   <p class="sys-msg">Accessing Abhijeet's Neural Net... [OK]</p>
                   <p class="ai-msg">System Status: Full-Stack Engineer & AI/ML Specialist found. Ready to deploy.</p>
-                  
+
                   <div class="llm-actions">
                     <button class="llm-chip" onclick="runLlmQuery('tech_stack')">[Fetch Tech_Stack]</button>
                     <button class="llm-chip" onclick="runLlmQuery('projects')">[Initialize Projects]</button>
@@ -160,7 +174,7 @@
           <div class="device-keyboard-base">
             <div class="device-trackpad"></div>
           </div>
-          
+
         </div>
       </div>
     </div>

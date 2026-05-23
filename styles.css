@@ -981,11 +981,131 @@ section {
 /* ── HERO ── */
 #hero {
     min-height: 100vh;
-    padding: 160px 60px 60px 10%; 
+    padding: 140px 60px 60px 8%; 
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    gap: 60px;
+    gap: 40px;
     align-items: center;
+    border: none;
+    position: relative;
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Role accent bar */
+.hero-role-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fUp 0.8s 1.3s forwards;
+}
+
+.role-accent-bar {
+    width: 3px; height: 24px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, var(--teal), var(--indigo));
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+    animation: accentPulse 3s ease-in-out infinite;
+}
+
+@keyframes accentPulse {
+    0%, 100% { opacity: 1; height: 24px; }
+    50% { opacity: 0.6; height: 18px; }
+}
+
+/* Name shimmer */
+.hname .grad {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--indigo), var(--violet), var(--pink), var(--indigo));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Button glow sweep */
+.btn-p {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%);
+    animation: btnSweep 3s ease-in-out infinite 2s;
+}
+
+@keyframes btnSweep {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ── FLOATING NAV TOGGLE (arrow chevron) ── */
+.nav-fab {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2100;
+    width: 36px;
+    height: 64px;
+    border-radius: 12px 0 0 12px;
+    border: 1px solid rgba(34, 211, 238, 0.25);
+    border-right: none;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+        -4px 0 20px rgba(34, 211, 238, 0.08),
+        0 0 30px rgba(129, 140, 248, 0.04);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--teal);
+}
+
+.nav-fab:hover {
+    width: 42px;
+    border-color: rgba(34, 211, 238, 0.45);
+    box-shadow:
+        -6px 0 30px rgba(34, 211, 238, 0.15),
+        0 0 40px rgba(129, 140, 248, 0.08);
+    color: #fff;
+}
+
+.nav-fab-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-fab.open .nav-fab-icon {
+    transform: rotate(180deg);
+}
+
+/* Hide old hamburger completely */
+.nav-hamburger {
+    display: none !important;
 }
 
 .htag {
@@ -2215,8 +2335,11 @@ footer {
     }
 
     .nav-hamburger {
+        display: none;
+    }
+
+    .nav-fab {
         display: flex;
-        z-index: 1002;
     }
 
     /* Sections */
@@ -2224,17 +2347,31 @@ footer {
         padding: 70px 24px;
     }
 
-    /* Hero */
+    /* Hero — keep side-by-side on tablet */
     #hero {
-        grid-template-columns: 1fr;
-        padding: 120px 28px 70px;
-        gap: 40px;
+        grid-template-columns: 1fr 1fr;
+        padding: 100px 20px 60px;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .hero-left {
+        align-items: flex-start;
+    }
+
+    .hname {
+        font-size: clamp(28px, 5vw, 44px);
+    }
+
+    .hbio {
+        font-size: 12px;
+        line-height: 1.6;
+        max-width: 100%;
     }
 
     .hero-right {
         display: flex;
         justify-content: center;
-        order: -1;
     }
 
     .photo-card {
@@ -4197,120 +4334,404 @@ footer {
 
 /* ── DEVICE MOCKUP (LAPTOP TO MOBILE) ── */
 
+/* ═══════════════════════════════════════════════════════════
+   HOLOGRAPHIC CYBER-DECK DEVICE MOCKUP
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── CONTAINER ── */
 .device-container {
-  perspective: 1200px; /* Creates the 3D space */
+  perspective: 1200px;
   width: 100%;
-  max-width: 550px;
+  max-width: 420px; /* Compact & balanced */
   z-index: 10;
   margin: 0 auto;
+  position: relative;
 }
 
+/* ── FLOATING SHADOW ── */
+.monitor-shadow {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+  background: radial-gradient(ellipse at center,
+    rgba(34, 211, 238, 0.25) 0%,
+    rgba(129, 140, 248, 0.12) 40%,
+    transparent 70%);
+  border-radius: 50%;
+  filter: blur(12px);
+  animation: shadowBreathe 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes shadowBreathe {
+  0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.6; }
+  50% { transform: translateX(-50%) scaleX(0.85); opacity: 0.35; }
+}
+
+/* ── MAIN MOCKUP ── */
 .device-mockup {
   position: relative;
   transform-style: preserve-3d;
-  /* Tilts the whole laptop slightly to the side */
-  transform: rotateX(10deg) rotateY(-15deg);
+  transform: rotateX(10deg) rotateY(-12deg);
   animation: floatDevice 6s ease-in-out infinite;
 }
 
 @keyframes floatDevice {
-  0%, 100% { transform: rotateX(10deg) rotateY(-15deg) translateY(0); }
-  50% { transform: rotateX(10deg) rotateY(-15deg) translateY(-15px); }
+  0%, 100% { transform: rotateX(10deg) rotateY(-12deg) translateY(0); }
+  50% { transform: rotateX(10deg) rotateY(-12deg) translateY(-12px); }
 }
 
-/* 1. The Screen Bezel */
+/* ── SCREEN BEZEL ── */
 .device-screen-bezel {
-  background: #020617; /* Deep slate outer edge */
-  border: 2px solid #334155;
-  border-radius: 12px;
-  /* 24px bottom padding creates the laptop 'chin' */
-  padding: 12px 12px 24px 12px; 
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 14px;
+  padding: 10px 10px 20px 10px;
   position: relative;
   z-index: 2;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(129, 140, 248, 0.15);
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.15),
+    0 0 60px rgba(34, 211, 238, 0.08),
+    0 0 40px rgba(129, 140, 248, 0.1),
+    0 25px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: bezelBreathe 4s ease-in-out infinite;
+}
+
+@keyframes bezelBreathe {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(34, 211, 238, 0.15),
+      0 0 60px rgba(34, 211, 238, 0.08),
+      0 0 40px rgba(129, 140, 248, 0.1),
+      0 25px 50px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(34, 211, 238, 0.25),
+      0 0 80px rgba(34, 211, 238, 0.12),
+      0 0 50px rgba(129, 140, 248, 0.18),
+      0 25px 50px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.device-screen-bezel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.5) 0%, rgba(34, 211, 238, 0.1) 30%, transparent 50%, rgba(129, 140, 248, 0.1) 70%, rgba(129, 140, 248, 0.3) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 .device-camera-hole {
-  display: none; /* Hidden on laptop */
+  display: none;
 }
 
-/* 2. The Keyboard Base (Folded flat using rotateX) */
+/* ── MONITOR SCREEN ── */
+.monitor-screen {
+  position: relative;
+  background: rgba(2, 6, 23, 0.85);
+  border-radius: 8px;
+  height: 280px;
+  overflow: hidden;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+.monitor-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.4;
+}
+
+.monitor-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.02) 40%, rgba(34, 211, 238, 0.06) 48%, rgba(255, 255, 255, 0.02) 56%, transparent 70%);
+  transform: translateX(-100%);
+  animation: glareSweep 7s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 6;
+}
+
+@keyframes glareSweep {
+  0%, 65% { transform: translateX(-100%); }
+  80% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── TERMINAL UI ── */
+.llm-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+  position: relative;
+  z-index: 3;
+}
+
+.mac-dots { display: flex; gap: 6px; flex-shrink: 0; }
+.mac-dots .dot { width: 10px; height: 10px; border-radius: 50%; display: block; box-shadow: 0 0 6px currentColor; }
+.mac-dots .dot.red { background: #f87171; color: rgba(248, 113, 113, 0.5); }
+.mac-dots .dot.yellow { background: #fbbf24; color: rgba(251, 191, 36, 0.5); }
+.mac-dots .dot.green { background: #34d399; color: rgba(52, 211, 153, 0.5); }
+
+.llm-title {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--indigo-light);
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 5px rgba(129, 140, 248, 0.3);
+}
+
+.llm-body { padding: 14px 16px; position: relative; z-index: 3; flex: 1; overflow-y: auto; scroll-behavior: smooth; }
+.llm-body::-webkit-scrollbar { width: 3px; }
+.llm-body::-webkit-scrollbar-track { background: transparent; }
+.llm-body::-webkit-scrollbar-thumb { background: rgba(34, 211, 238, 0.25); border-radius: 4px; }
+.llm-line { margin-bottom: 12px; }
+.prompt-line { display: flex; align-items: baseline; gap: 8px; }
+.prompt-arrow { color: var(--teal); font-weight: 600; text-shadow: 0 0 5px rgba(34, 211, 238, 0.4); flex-shrink: 0; }
+#typewriterText { color: var(--text); text-shadow: 0 0 5px rgba(226, 232, 240, 0.15); }
+.cursor-blink { color: var(--teal); text-shadow: 0 0 8px rgba(34, 211, 238, 0.6); animation: blink 1s step-end infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.llm-response-box { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(34, 211, 238, 0.08); animation: fadeInUp 0.5s ease forwards; }
+.llm-response-box.hidden { display: none; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.sys-msg { color: var(--teal); font-size: 12px; margin-bottom: 8px; text-shadow: 0 0 8px currentColor; }
+.ai-msg { color: var(--indigo-light); font-size: 12px; line-height: 1.8; margin-bottom: 14px; text-shadow: 0 0 8px currentColor; }
+.llm-dynamic-output span { text-shadow: 0 0 6px currentColor; }
+
+.llm-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.llm-chip {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--teal);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 4px rgba(34, 211, 238, 0.15);
+}
+.llm-chip:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.15), inset 0 0 8px rgba(34, 211, 238, 0.05);
+  transform: translateY(-1px);
+}
+.llm-dynamic-output { font-size: 11px; color: var(--muted); line-height: 1.7; border-left: 2px solid rgba(34, 211, 238, 0.2); padding-left: 10px; margin-top: 8px; }
+
+/* ── KEYBOARD BASE ── */
 .device-keyboard-base {
   position: absolute;
-  top: 100%; /* FIX: Anchors the hinge exactly to the bottom of the screen */
-  left: -8%; /* Makes the base slightly wider than the screen */
-  width: 116%;
-  height: 240px;
-  background: linear-gradient(to bottom, #1e293b, #050810);
-  border-radius: 0 0 24px 24px; /* Rounded front corners */
-  border: 2px solid #334155;
+  top: 100%;
+  left: -5%;
+  width: 110%;
+  height: 160px;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.08) 0%, transparent 15%, transparent 85%, rgba(129, 140, 248, 0.06) 100%), linear-gradient(to bottom, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.9) 40%, rgba(5, 8, 16, 0.95) 100%);
+  border-radius: 0 0 20px 20px;
+  border: 1px solid rgba(34, 211, 238, 0.15);
   border-top: none;
   transform-origin: top;
-  /* Folds the base flat towards the user */
-  transform: rotateX(75deg); 
-  box-shadow: 0 40px 60px rgba(0,0,0,0.9);
+  transform: rotateX(75deg);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(34, 211, 238, 0.06);
   z-index: 1;
+}
+
+.device-keyboard-base::before {
+  content: '';
+  position: absolute;
+  inset: 12px 20px 30px 20px;
+  background: repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(255, 255, 255, 0.015) 18px, rgba(255, 255, 255, 0.015) 19px), repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(255, 255, 255, 0.01) 10px, rgba(255, 255, 255, 0.01) 11px);
+  border-radius: 4px;
+  pointer-events: none;
 }
 
 .device-trackpad {
   position: absolute;
-  bottom: 20px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
-  width: 35%;
-  height: 70px;
-  background: rgba(255,255,255,0.03);
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.06);
+  width: 32%;
+  height: 48px;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.06) 0%, rgba(129, 140, 248, 0.04) 50%, rgba(192, 132, 252, 0.06) 100%);
+  border-radius: 6px;
+  border: 1px solid rgba(34, 211, 238, 0.12);
+  box-shadow: inset 0 0 12px rgba(34, 211, 238, 0.04), 0 0 10px rgba(34, 211, 238, 0.06);
+  transition: all 0.3s ease;
 }
+.device-trackpad:hover { box-shadow: inset 0 0 16px rgba(34, 211, 238, 0.08), 0 0 16px rgba(34, 211, 238, 0.12); border-color: rgba(34, 211, 238, 0.25); }
 
-/* ── MOBILE TRANSFORM (FLATTENS INTO PHONE) ── */
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE TRANSFORMATION (≤ 900px: flattens into sleek glowing phone)
+   ═══════════════════════════════════════════════════════════════════════ */
+
 @media (max-width: 900px) {
+
+  /* ── MOBILE TRANSFORM FOR CYBER-DECK ── */
+  .device-container { max-width: 300px; margin-top: 20px; }
+  .monitor-shadow { display: none; }
+  .device-mockup { transform: none !important; animation: floatMobile 5s ease-in-out infinite !important; }
+  @keyframes floatMobile { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .device-keyboard-base { display: none; }
   
-  .device-container {
-    max-width: 350px; /* Phone width */
-    margin-top: 40px; /* Push down to clear navbar */
-  }
-
-  .device-mockup {
-    transform: none !important; /* Removes 3D rotation */
-    animation: floatMobile 6s ease-in-out infinite !important;
-  }
-  
-  @keyframes floatMobile {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  /* Hide the laptop base */
-  .device-keyboard-base {
-    display: none; 
-  }
-
-  /* Shape the screen into a phone */
   .device-screen-bezel {
-    border-radius: 30px; /* Heavy rounded phone corners */
-    padding: 10px;
-    border: 4px solid #1e293b; /* Thicker phone casing */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    border-radius: 32px;
+    padding: 8px;
+    border: 2px solid rgba(34, 211, 238, 0.35);
+    box-shadow: 0 0 24px rgba(34, 211, 238, 0.12), 0 0 60px rgba(129, 140, 248, 0.08), 0 15px 40px rgba(0, 0, 0, 0.5);
+    animation: bezelBreathe 4s ease-in-out infinite;
   }
+  .device-screen-bezel::before { display: none; }
+  .monitor-screen { border-radius: 24px; height: 360px; }
   
-  .monitor-screen {
-    border-radius: 20px; /* Match inner screen to phone corners */
-    min-height: 450px; /* Taller for phone aspect ratio */
-  }
-
-  /* Show the mobile camera notch */
   .device-camera-hole {
     display: block;
     position: absolute;
-    top: 14px;
+    top: 12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 18px;
-    background: #020617;
+    width: 72px;
+    height: 20px;
+    background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
     border-radius: 10px;
     z-index: 10;
+    border: 1px solid rgba(34, 211, 238, 0.15);
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.1);
+  }
+  .llm-header { padding-top: 28px; }
+  .llm-body { font-size: 11px; }
+  .llm-actions { flex-direction: column; gap: 6px; }
+  .llm-chip { width: 100%; text-align: center; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPACT MOBILE (≤ 640px) — side-by-side, scaled down
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  #hero {
+    grid-template-columns: 1fr 1fr;
+    padding: 75px 14px 30px;
+    gap: 10px;
+    text-align: left;
+    min-height: auto;
+  }
+
+  .hero-left {
+    align-items: flex-start;
+  }
+
+  .hgreet {
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+
+  .hname {
+    font-size: clamp(22px, 7vw, 32px);
+    margin-bottom: 4px;
+    padding-bottom: 2px;
+  }
+
+  .hero-role-wrap {
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+
+  .role-accent-bar {
+    height: 16px;
+    width: 2px;
+  }
+
+  .hrole {
+    font-size: 10px;
+    margin-bottom: 0;
+  }
+
+  .hbio {
+    font-size: 10px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    max-width: 100%;
+  }
+
+  .hbtns {
+    gap: 6px;
+    flex-direction: column;
+  }
+
+  .btn-p, .btn-o {
+    font-size: 10px;
+    padding: 8px 14px;
+  }
+
+  .device-container {
+    max-width: 100%;
+  }
+
+  .monitor-screen {
+    height: 260px;
+  }
+
+  .scroll-down-indicator {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SMALL MOBILE TWEAKS (≤ 400px)
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 400px) {
+  #hero {
+    padding: 68px 10px 24px;
+    gap: 8px;
+  }
+
+  .hname {
+    font-size: clamp(20px, 7vw, 30px);
+  }
+
+  .hbio {
+    font-size: 10px;
+  }
+
+  .btn-p, .btn-o {
+    font-size: 10px;
+    padding: 7px 14px;
+  }
+
+  .monitor-screen {
+    height: 240px;
+  }
+
+  .llm-body {
+    padding: 8px 10px;
+    font-size: 10px;
   }
 }

@@ -183,6 +183,7 @@ if (gEl) {
 // ── HAMBURGER NAV ──
 const hamburger = document.getElementById('navHamburger');
 const navLinks = document.getElementById('navLinks');
+const navFab = document.getElementById('navFab');
 
 // Create overlay for sidebar backdrop tap-to-close
 const navOverlay = document.createElement('div');
@@ -194,22 +195,33 @@ navOverlay.style.cssText = `
 document.body.appendChild(navOverlay);
 
 function openNav() {
-  hamburger.classList.add('open');
+  if (hamburger) hamburger.classList.add('open');
+  if (navFab) navFab.classList.add('open');
   navLinks.classList.add('open');
   navOverlay.style.display = 'block';
   requestAnimationFrame(() => navOverlay.style.background = 'rgba(0,0,0,0.5)');
 }
 function closeNav() {
-  hamburger.classList.remove('open');
+  if (hamburger) hamburger.classList.remove('open');
+  if (navFab) navFab.classList.remove('open');
   navLinks.classList.remove('open');
   navOverlay.style.background = 'rgba(0,0,0,0)';
   setTimeout(() => { navOverlay.style.display = 'none'; }, 380);
 }
 
-if (hamburger && navLinks) {
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.contains('open') ? closeNav() : openNav();
-  });
+if (navLinks) {
+  // Old hamburger toggle (desktop fallback)
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.contains('open') ? closeNav() : openNav();
+    });
+  }
+  // Floating fab toggle (primary mobile)
+  if (navFab) {
+    navFab.addEventListener('click', () => {
+      navLinks.classList.contains('open') ? closeNav() : openNav();
+    });
+  }
   navLinks.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', closeNav);
   });
@@ -359,6 +371,7 @@ if (document.readyState === "loading") {
 // 3. Handle Button Clicks inside the Monitor
 window.runLlmQuery = function(queryType) {
   const outputArea = document.getElementById("llmDynamicOutput");
+  const llmBody = document.querySelector(".llm-body");
   outputArea.innerHTML = ""; // Clear previous output
   
   let resultText = "";
@@ -380,7 +393,14 @@ window.runLlmQuery = function(queryType) {
   setTimeout(() => {
     outputArea.innerHTML = resultText;
     outputArea.style.opacity = 1;
-    outputArea.style.transition = "opacity 0.2s";
+    outputArea.style.transition = "opacity 0.3s ease";
+    
+    // Auto-scroll the terminal body to reveal new content
+    if (llmBody) {
+      requestAnimationFrame(() => {
+        llmBody.scrollTo({ top: llmBody.scrollHeight, behavior: 'smooth' });
+      });
+    }
   }, 200);
 };
 
