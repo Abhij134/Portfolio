@@ -189,7 +189,7 @@ const navFab = document.getElementById('navFab');
 const navOverlay = document.createElement('div');
 navOverlay.id = 'navOverlay';
 navOverlay.style.cssText = `
-  display: none; position: fixed; inset: 0; z-index: 1998;
+  display: none; position: fixed; inset: 0; z-index: 995;
   background: rgba(0,0,0,0); transition: background 0.38s ease;
 `;
 document.body.appendChild(navOverlay);
@@ -368,40 +368,101 @@ if (document.readyState === "loading") {
   initTypewriter();
 }
 
-// 3. Handle Button Clicks inside the Monitor
+// 3. Handle Button Clicks & Clear inside the Monitor
+let activeLlmInterval = null;
+let activeLlmTimeout = null;
+
+window.clearLlmOutput = function() {
+  const outputArea = document.getElementById("llmDynamicOutput");
+  if (activeLlmInterval) clearInterval(activeLlmInterval);
+  if (activeLlmTimeout) clearTimeout(activeLlmTimeout);
+  if (outputArea) {
+    outputArea.style.transition = "opacity 0.2s ease";
+    outputArea.style.opacity = 0;
+    setTimeout(() => {
+      outputArea.innerHTML = "";
+      outputArea.style.minHeight = "0px";
+      outputArea.style.opacity = 1;
+    }, 180);
+  }
+};
+
 window.runLlmQuery = function(queryType) {
   const outputArea = document.getElementById("llmDynamicOutput");
   const llmBody = document.querySelector(".llm-body");
-  outputArea.innerHTML = ""; // Clear previous output
-  
-  let resultText = "";
+  if (!outputArea) return;
+
+  // Clear any existing query timers
+  if (activeLlmInterval) clearInterval(activeLlmInterval);
+  if (activeLlmTimeout) clearTimeout(activeLlmTimeout);
+
+  // Lock current height so terminal screen never shrinks or jumps/scrolls up automatically
+  const currentHeight = outputArea.offsetHeight;
+  if (currentHeight > 0) {
+    outputArea.style.minHeight = currentHeight + "px";
+  }
   
   if (queryType === 'tech_stack') {
-    resultText = "> Executing ./fetch_stack.sh...<br/>" +
-                 "<span style='color:#10B981'>Front-End:</span> Next.js, React, Tailwind<br/>" +
-                 "<span style='color:#A855F7'>Back-End:</span> Prisma, Supabase, PHP, Python<br/>" +
-                 "<span style='color:#22D3EE'>Database:</span> MongoDB, PostgreSQL";
-  } else if (queryType === 'projects') {
-    resultText = "> Searching repos...<br/>" + "github.com/Abhij134<br/>" +
-                 "[1] <span style='color:#fff'>FinanceNeo:</span> AI-Powered Financial Tracking<br/>" +
-                 "[2] <span style='color:#fff'>Burzt:</span> Audio Tracker API Integration<br/>" +
-                 "<span style='color:#10B981'>Status:</span> Scroll down to view full project architecture.";
-  }
-
-  // Flash the text slightly to simulate loading
-  outputArea.style.opacity = 0;
-  setTimeout(() => {
-    outputArea.innerHTML = resultText;
     outputArea.style.opacity = 1;
-    outputArea.style.transition = "opacity 0.3s ease";
+    outputArea.innerHTML = "<span style='font-size: 11px; color: var(--teal);'>&gt; Executing ./fetch_stack.sh<span id='loadingDotsTech'>...</span></span>";
     
-    // Auto-scroll the terminal body to reveal new content
     if (llmBody) {
-      requestAnimationFrame(() => {
-        llmBody.scrollTo({ top: llmBody.scrollHeight, behavior: 'smooth' });
-      });
+      llmBody.scrollTo({ top: llmBody.scrollHeight, behavior: 'smooth' });
     }
-  }, 200);
+
+    let dotCount = 0;
+    activeLlmInterval = setInterval(() => {
+      const dotsEl = document.getElementById('loadingDotsTech');
+      if (dotsEl) {
+        dotCount = (dotCount + 1) % 4;
+        dotsEl.textContent = '.'.repeat(dotCount);
+      }
+    }, 200);
+
+    activeLlmTimeout = setTimeout(() => {
+      clearInterval(activeLlmInterval);
+      outputArea.innerHTML = "<div style='display:flex; justify-content:space-between; align-items:center;'><span style='color:#10B981; font-weight:600;'>Found : </span><button onclick='clearLlmOutput()' class='llm-clear-btn' title='Clear output'>clear</button></div>" +
+                   "<span style='color:#10B981'>Front-End:</span> Next.js, React, Tailwind<br/>" +
+                   "<span style='color:#A855F7'>Back-End:</span> Prisma, Supabase, PHP, Python<br/>" +
+                   "<span style='color:#22D3EE'>Database:</span> MongoDB, PostgreSQL";
+      outputArea.style.minHeight = "0px"; // Release height lock smoothly
+      if (llmBody) {
+        requestAnimationFrame(() => {
+          llmBody.scrollTo({ top: llmBody.scrollHeight, behavior: 'smooth' });
+        });
+      }
+    }, 1000); // 1 second delay
+  } else if (queryType === 'projects') {
+    outputArea.style.opacity = 1;
+    outputArea.innerHTML = "<span style='font-size: 11px; color: var(--teal);'>&gt; Searching repos<span id='loadingDots'>...</span></span>";
+    
+    if (llmBody) {
+      llmBody.scrollTo({ top: llmBody.scrollHeight, behavior: 'smooth' });
+    }
+
+    let dotCount = 0;
+    activeLlmInterval = setInterval(() => {
+      const dotsEl = document.getElementById('loadingDots');
+      if (dotsEl) {
+        dotCount = (dotCount + 1) % 4;
+        dotsEl.textContent = '.'.repeat(dotCount);
+      }
+    }, 200);
+
+    activeLlmTimeout = setTimeout(() => {
+      clearInterval(activeLlmInterval);
+      outputArea.innerHTML = "<div style='display:flex; justify-content:space-between; align-items:center;'><span style='color:#10B981; font-weight:600;'>Found : </span><button onclick='clearLlmOutput()' class='llm-clear-btn' title='Clear output'>clear</button></div>" +
+                   "<span style='color:var(--muted); font-size: 10px;'>github.com/Abhij134</span><br/>" +
+                   "[1] <span style='color:#fff'>FinanceNeo:</span> AI-Powered Financial Tracking<br/>" +
+                   "[2] <span style='color:#fff'>Burzt:</span> Audio Tracker API Integration<br/>";
+      outputArea.style.minHeight = "0px"; // Release height lock smoothly
+      if (llmBody) {
+        requestAnimationFrame(() => {
+          llmBody.scrollTo({ top: llmBody.scrollHeight, behavior: 'smooth' });
+        });
+      }
+    }, 1000); // 1 second delay
+  }
 };
 
 // ── 3D MONITOR CURSOR TRACKING TILT ──
@@ -421,5 +482,28 @@ if (monitorFrame) {
     
     monitorFrame.style.setProperty('--rot-x', `${tiltX}deg`);
     monitorFrame.style.setProperty('--rot-y', `${tiltY}deg`);
+  });
+}
+
+// ── SCROLL DOWN INDICATOR FADE LOGIC ──
+const scrollIndicator = document.querySelector('.scroll-down-indicator');
+if (scrollIndicator) {
+  window.addEventListener('scroll', () => {
+    // Fade out arrow when scrolled past 150px
+    if (window.scrollY > 150) {
+      scrollIndicator.classList.add('fade-out');
+    } else {
+      scrollIndicator.classList.remove('fade-out');
+    }
+  });
+}
+
+// ── SOCIAL LINKS TOGGLE LOGIC ──
+const socialToggleBtn = document.getElementById('socialToggleBtn');
+const socialPanel = document.getElementById('socialPanel');
+if (socialToggleBtn && socialPanel) {
+  socialToggleBtn.addEventListener('click', () => {
+    socialToggleBtn.classList.toggle('active');
+    socialPanel.classList.toggle('active');
   });
 }

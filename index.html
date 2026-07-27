@@ -91,26 +91,27 @@
 
   <!-- ══ NAV ══ -->
   <nav>
-    <div class="nav-brand">
+    <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="cursor: pointer;" title="Scroll to Top">
       <img src="./logo.png" alt="Logo" class="nav-logo" />
-      <span>Abhijeet.dev</span>
+      <span>Abhijeet<span class="dot-dev">.dev</span></span>
     </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about" class="nav-item-link">About</a></li>
-      <li><a href="#projects" class="nav-item-link">Projects</a></li>
-      <li><a href="#skills" class="nav-item-link">Skills</a></li>
-      <li><a href="#experience" class="nav-item-link">Journey</a></li>
-      <li><a href="#certifications" class="nav-item-link">Certifications</a></li>
-      <li><a href="#contact" class="nav-item-link">Contact</a></li>
-    </ul>
+
+    <!-- 3-Lines Option Button inside top nav bar (right side) -->
+    <button class="nav-menu-btn" id="navFab" aria-label="Toggle navigation">
+      <span class="menu-line line-top"></span>
+      <span class="menu-line line-mid"></span>
+      <span class="menu-line line-bot"></span>
+    </button>
   </nav>
 
-  <!-- FLOATING NAV TOGGLE — arrow chevron -->
-  <button class="nav-fab" id="navFab" aria-label="Toggle navigation">
-    <svg class="nav-fab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="nav-item-link">About</a></li>
+    <li><a href="#projects" class="nav-item-link">Projects</a></li>
+    <li><a href="#skills" class="nav-item-link">Skills</a></li>
+    <li><a href="#experience" class="nav-item-link">Journey</a></li>
+    <li><a href="#certifications" class="nav-item-link">Certifications</a></li>
+    <li><a href="#contact" class="nav-item-link">Contact</a></li>
+  </ul>
 
   <section id="hero">
     <div class="hero-left">
@@ -127,9 +128,34 @@
       <div class="hbtns">
         <a href="#projects" class="btn-p">
           <span class="btn-glow"></span>
-          View My Work →
+          <span class="btn-text">View My Work</span>
+          <svg class="btn-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
         </a>
         <a href="#contact" class="btn-o">Let's Talk</a>
+        <button class="btn-social-toggle" id="socialToggleBtn" aria-label="Toggle Profile Links">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="social-panel" id="socialPanel">
+        <a href="https://github.com/Abhij134" target="_blank" class="social-link-item" style="--i:0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="https://linkedin.com/in/abhijeet-gautam" target="_blank" class="social-link-item" style="--i:1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="./resume.pdf" download class="social-link-item" style="--i:2" aria-label="Download Resume">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Resume</span>
+        </a>
       </div>
     </div>
     <div class="hero-right">
@@ -153,7 +179,7 @@
               <div class="llm-body">
                 <div class="llm-line prompt-line">
                   <span class="prompt-arrow">&gt;</span>
-                  <span id="typewriterText"></span><span class="cursor-blink">_</span>
+                  <span id="typewriterText"></span>
                 </div>
 
                 <div id="llmResponseBox" class="llm-response-box hidden">
@@ -168,6 +194,7 @@
                   <div id="llmDynamicOutput" class="llm-dynamic-output"></div>
                 </div>
               </div>
+              <div class="iphone-home-bar"></div>
             </div>
           </div>
 
@@ -224,14 +251,16 @@
     </div>
     <div class="expertise-grid">
       <div class="expertise-card reveal">
-        <div class="card-icon"
-          style="color:#22d3ee;border-color:rgba(34,211,238,0.2);background:rgba(34,211,238,0.08);">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="16 18 22 12 16 6" />
-            <polyline points="8 6 2 12 8 18" />
-          </svg>
+        <div class="expertise-card-header">
+          <div class="card-icon"
+            style="color:#22d3ee;border-color:rgba(34,211,238,0.2);background:rgba(34,211,238,0.08);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          </div>
+          <div class="card-title">Programming</div>
         </div>
-        <div class="card-title">Programming</div>
         <div class="skill-list">
           <div class="skill-item"><span>Python / SQL <span class="pct">93%</span></span>
             <div class="bar-bg">
@@ -251,14 +280,16 @@
         </div>
       </div>
       <div class="expertise-card reveal">
-        <div class="card-icon"
-          style="color:#c084fc;border-color:rgba(192,132,252,0.2);background:rgba(192,132,252,0.08);">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path
-              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-          </svg>
+        <div class="expertise-card-header">
+          <div class="card-icon"
+            style="color:#c084fc;border-color:rgba(192,132,252,0.2);background:rgba(192,132,252,0.08);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            </svg>
+          </div>
+          <div class="card-title">AI &amp; ML</div>
         </div>
-        <div class="card-title">AI &amp; ML</div>
         <div class="skill-list">
           <div class="skill-item"><span>Gemini / OpenAI <span class="pct">95%</span></span>
             <div class="bar-bg">
@@ -281,14 +312,16 @@
         </div>
       </div>
       <div class="expertise-card reveal">
-        <div class="card-icon"
-          style="color:#818cf8;border-color:rgba(129,140,248,0.2);background:rgba(129,140,248,0.08);">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="3" width="20" height="14" rx="2" />
-            <path d="M8 21h8M12 17v4" />
-          </svg>
+        <div class="expertise-card-header">
+          <div class="card-icon"
+            style="color:#818cf8;border-color:rgba(129,140,248,0.2);background:rgba(129,140,248,0.08);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg>
+          </div>
+          <div class="card-title">Frontend &amp; Tools</div>
         </div>
-        <div class="card-title">Frontend &amp; Tools</div>
         <div class="skill-list">
           <div class="skill-item"><span>React / Next.js <span class="pct">94%</span></span>
             <div class="bar-bg">
@@ -311,15 +344,17 @@
         </div>
       </div>
       <div class="expertise-card reveal">
-        <div class="card-icon"
-          style="color:#fbbf24;border-color:rgba(251,191,36,0.2);background:rgba(251,191,36,0.08);">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <ellipse cx="12" cy="5" rx="9" ry="3" />
-            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-          </svg>
+        <div class="expertise-card-header">
+          <div class="card-icon"
+            style="color:#fbbf24;border-color:rgba(251,191,36,0.2);background:rgba(251,191,36,0.08);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+            </svg>
+          </div>
+          <div class="card-title">Backend &amp; Deploy</div>
         </div>
-        <div class="card-title">Backend &amp; Deploy</div>
         <div class="skill-list">
           <div class="skill-item"><span>Supabase / Node <span class="pct">92%</span></span>
             <div class="bar-bg">
@@ -723,7 +758,7 @@
 
   <!-- CERTIFICATIONS -->
   <section id="certifications">
-    <div class="shead reveal"><span class="stag">Credentials</span>
+    <div class="shead reveal">
       <h2 class="stitle">My <em>Certifications</em></h2>
       <p class="ssub">Verified credentials from industry-leading platforms.</p>
     </div>
@@ -781,9 +816,25 @@
     <div class="shead reveal">
       <span class="stag">Get in Touch</span>
       <h2 class="stitle">Let's Build Something <em>Amazing</em></h2>
-      <p class="ssub">Have a project in mind? I'm open to discussing new opportunities and interesting ideas.</p>
+      <p class="ssub">Have a project in mind? Feel free to reach out!</p>
     </div>
     <div class="contact-body">
+      <div class="contact-form-col reveal">
+        <div class="cform">
+          <div class="frow">
+            <div class="fgrp"><label>First Name</label><input id="cf-firstname" type="text" placeholder="John"></div>
+            <div class="fgrp"><label>Last Name</label><input id="cf-lastname" type="text" placeholder="Doe"></div>
+          </div>
+          <div class="fgrp"><label>Email</label><input id="cf-email" type="email" placeholder="john@example.com"></div>
+          <div class="fgrp"><label>Subject</label><input id="cf-subject" type="text" placeholder="Project Inquiry">
+          </div>
+          <div class="fgrp"><label>Message</label><textarea id="cf-message"
+              placeholder="Tell me about your project…"></textarea></div>
+          <div id="formAlert" style="display:none;font-family:'Syne',sans-serif;font-size:13px;margin-bottom:8px;">
+          </div>
+          <button class="bsub" id="formSend" onclick="sendMessage()">Send Message →</button>
+        </div>
+      </div>
       <div class="contact-links-col reveal">
         <div class="clinks">
           <a href="mailto:abhijeetg134@gmail.com" class="clink glass" title="Email me">
@@ -821,22 +872,6 @@
               <div class="clval">@casper_prince7</div>
             </div>
           </a>
-        </div>
-      </div>
-      <div class="contact-form-col reveal">
-        <div class="cform">
-          <div class="frow">
-            <div class="fgrp"><label>First Name</label><input id="cf-firstname" type="text" placeholder="John"></div>
-            <div class="fgrp"><label>Last Name</label><input id="cf-lastname" type="text" placeholder="Doe"></div>
-          </div>
-          <div class="fgrp"><label>Email</label><input id="cf-email" type="email" placeholder="john@example.com"></div>
-          <div class="fgrp"><label>Subject</label><input id="cf-subject" type="text" placeholder="Project Inquiry">
-          </div>
-          <div class="fgrp"><label>Message</label><textarea id="cf-message"
-              placeholder="Tell me about your project…"></textarea></div>
-          <div id="formAlert" style="display:none;font-family:'Syne',sans-serif;font-size:13px;margin-bottom:8px;">
-          </div>
-          <button class="bsub" id="formSend" onclick="sendMessage()">Send Message →</button>
         </div>
       </div>
     </div>
@@ -918,6 +953,25 @@
           BCA student at Galgotias University specializing in AI/ML. Building intelligent full-stack applications with
           PHP, Python, and MongoDB that deliver measurable impact.
         </p>
+      </div>
+
+      <div>
+        <h3 class="footer-heading">Navigation</h3>
+        <ul class="footer-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Journey</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer-heading">Social Links</h3>
+        <p style="margin-bottom: 1rem; text-align: left;">
+          Open for freelance projects, internships, and collaborations.
+        </p>
 
         <div class="social-icons">
           <a href="https://www.linkedin.com/in/abhijeet-gautam134" target="_blank" rel="noopener noreferrer"
@@ -954,33 +1008,6 @@
             </svg>
           </a>
         </div>
-      </div>
-
-      <div>
-        <h3 class="footer-heading">Navigation</h3>
-        <ul class="footer-nav">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Journey</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="footer-heading">Get in Touch</h3>
-        <p style="margin-bottom: 1rem; text-align: left;">
-          Open for freelance projects, internships, and collaborations.
-        </p>
-        <a href="mailto:abhijeetg134@gmail.com" class="email-link">
-          <span>abhijeetg134@gmail.com</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
-        </a>
       </div>
 
     </div>
