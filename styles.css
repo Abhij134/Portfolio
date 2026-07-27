@@ -3925,45 +3925,37 @@ footer {
 ══════════════════════════ */
 .custom-footer {
     background-color: #010409;
-    /* Match site theme */
     border-top: 1px solid rgba(31, 41, 55, 0.5);
-    padding: 4rem 1.5rem 2rem 1.5rem;
+    padding: 4rem 2rem 2.5rem 2rem;
     font-family: 'Syne', sans-serif;
     color: #9CA3AF;
     font-size: 0.875rem;
     line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .footer-container {
-    max-width: 72rem;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-
-/* Footer Grid - Stacked single column layout matching mobile on PC */
-.footer-container {
-    max-width: 48rem;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     gap: 2.5rem;
     margin-bottom: 2.5rem;
 }
 
-/* Bottom Divider */
+/* Bottom Divider - Stacked directly below left contents */
 .footer-bottom-bar {
-    max-width: 48rem;
-    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
     border-top: 1px solid rgba(31, 41, 55, 0.5);
     padding-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
     color: #6B7280;
     font-size: 0.75rem;
     gap: 0.4rem;
