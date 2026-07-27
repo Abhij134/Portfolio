@@ -4799,16 +4799,21 @@ footer {
     top: 100%;
     left: 0;
     width: 100%;
-    height: 175px;
-    background: linear-gradient(180deg, #0f172a 0%, #090d1a 45%, #030712 100%);
-    border-radius: 0 0 16px 16px;
-    border: 1px solid rgba(34, 211, 238, 0.35);
-    border-top: 2px solid rgba(34, 211, 238, 0.6);
+    height: 200px;
+    background: rgba(5, 8, 16, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-top: none;
+    border-radius: 0 0 22px 22px;
     transform-origin: top;
-    transform: rotateX(68deg);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(34, 211, 238, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    transform: rotateX(66deg);
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.95),
+        0 15px 30px rgba(0, 0, 0, 0.9),
+        inset 0 0 14px rgba(0, 0, 0, 0.8);
     z-index: 1;
-    padding: 8px 12px 0;
+    padding: 10px 14px 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -4816,14 +4821,28 @@ footer {
     overflow: hidden;
 }
 
+.device-keyboard-base::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.04) 40%, transparent 60%, rgba(255, 255, 255, 0.08) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
 .keyboard-well {
     width: 96%;
-    height: 105px;
-    background: #040711;
+    height: 110px;
+    background: rgba(2, 6, 23, 0.9);
     border-radius: 8px;
-    border: 1px solid rgba(34, 211, 238, 0.25);
-    box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.95), 0 0 12px rgba(34, 211, 238, 0.08);
-    padding: 5px 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.95);
+    padding: 6px 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -4835,12 +4854,12 @@ footer {
     justify-content: space-between;
     align-items: center;
     gap: 3px;
-    height: 14px;
+    height: 15px;
 }
 
 .key {
     background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-    border: 1px solid rgba(34, 211, 238, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 3px;
     color: rgba(226, 232, 240, 0.75);
     font-size: 6px;
@@ -4850,7 +4869,7 @@ footer {
     justify-content: center;
     flex: 1;
     height: 100%;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 5px rgba(34, 211, 238, 0.06);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.85);
     user-select: none;
 }
 
@@ -4859,17 +4878,17 @@ footer {
 .key.k-lg { flex: 1.6; }
 .key.k-xl { flex: 1.9; }
 .key.k-xxl { flex: 2.3; }
-.key.k-space { flex: 6; background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); border-color: rgba(34, 211, 238, 0.2); }
+.key.k-space { flex: 6; background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); }
 .key.k-power { flex: 0.8; background: rgba(34, 211, 238, 0.25); border-color: rgba(34, 211, 238, 0.5); box-shadow: 0 0 8px rgba(34, 211, 238, 0.4); }
 
 .device-trackpad {
-    margin-top: 7px;
-    width: 33%;
-    height: 44px;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.7) 100%);
+    margin-top: 10px;
+    width: 34%;
+    height: 52px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
     border-radius: 6px;
-    border: 1px solid rgba(34, 211, 238, 0.25);
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7), 0 0 10px rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7);
     transition: all 0.3s ease;
 }
 
