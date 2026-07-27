@@ -3937,20 +3937,24 @@ footer {
 }
 
 .footer-container {
-    max-width: 600px;
+    max-width: 1050px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    margin-bottom: 2.5rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 32px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
 }
 
-/* Bottom Divider - Center aligned */
+@media (max-width: 850px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+    }
+}
+
+/* Bottom Divider - Centered element below unaffected */
 .footer-bottom-bar {
-    max-width: 600px;
+    max-width: 1050px;
     width: 100%;
     border-top: 1px solid rgba(31, 41, 55, 0.5);
     padding-top: 1.5rem;
