@@ -3943,12 +3943,30 @@ footer {
     margin-bottom: 3rem;
 }
 
-/* Desktop Grid */
-@media (min-width: 768px) {
-    .footer-container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3rem;
-    }
+/* Footer Grid - Stacked single column layout matching mobile on PC */
+.footer-container {
+    max-width: 48rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Bottom Divider */
+.footer-bottom-bar {
+    max-width: 48rem;
+    margin: 0 auto;
+    border-top: 1px solid rgba(31, 41, 55, 0.5);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #6B7280;
+    font-size: 0.75rem;
+    gap: 0.4rem;
 }
 
 /* Column 1: Brand */
@@ -4059,28 +4077,8 @@ footer {
     transform: translate(2px, -2px);
 }
 
-/* Bottom Divider */
-.footer-bottom-bar {
-    max-width: 72rem;
-    margin: 0 auto;
-    border-top: 1px solid rgba(31, 41, 55, 0.5);
-    padding-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: #6B7280;
-    font-size: 0.75rem;
-}
-
-@media (min-width: 768px) {
-    .footer-bottom-bar {
-        flex-direction: row;
-    }
-}
-
 .footer-bottom-bar p {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
 }
 
 
