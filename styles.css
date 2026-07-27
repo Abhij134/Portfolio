@@ -3933,7 +3933,7 @@ footer {
     line-height: 1.5;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .footer-container {
@@ -3943,9 +3943,12 @@ footer {
     flex-direction: column;
     gap: 2.5rem;
     margin-bottom: 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
 }
 
-/* Bottom Divider - Stacked directly below left contents */
+/* Bottom Divider - Center aligned */
 .footer-bottom-bar {
     max-width: 600px;
     width: 100%;
@@ -3953,12 +3956,13 @@ footer {
     padding-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    text-align: left;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     color: #6B7280;
     font-size: 0.75rem;
     gap: 0.4rem;
+    margin: 0 auto;
 }
 
 /* Column 1: Brand */
