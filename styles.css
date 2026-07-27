@@ -1317,35 +1317,43 @@ section {
 
 /* ── SOCIALS PANEL AND TOGGLE BUTTON ── */
 .btn-social-toggle {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: var(--glass);
+    background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1.5px solid var(--border);
-    color: var(--indigo);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--muted);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s ease;
     outline: none;
 }
 
+.btn-social-toggle svg {
+    stroke: #ce70cc;
+    transition: stroke 0.3s ease;
+}
+
 .btn-social-toggle:hover {
-    background: var(--glass-strong);
-    border-color: var(--teal);
-    color: var(--teal);
-    transform: translateY(-3px) rotate(15deg);
+    background: rgba(30, 41, 59, 0.85);
+    border-color: rgba(206, 112, 204, 0.4);
+    transform: translateY(-2px);
 }
 
 .btn-social-toggle.active {
-    background: var(--teal);
-    border-color: var(--teal);
-    color: #030712;
-    transform: translateY(-3px) rotate(45deg);
-    box-shadow: 0 0 16px rgba(34, 211, 238, 0.4);
+    background: linear-gradient(135deg, var(--indigo), var(--violet));
+    border-color: transparent;
+    color: #ffffff;
+    transform: translateY(-2px) rotate(45deg);
+    box-shadow: 0 4px 18px rgba(129, 140, 248, 0.45);
+}
+
+.btn-social-toggle.active svg {
+    stroke: #ffffff;
 }
 
 .social-panel {
